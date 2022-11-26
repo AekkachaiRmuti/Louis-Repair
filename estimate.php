@@ -84,34 +84,34 @@
                                             <?php
                                                 if (isset($_POST['btn_save'])) {
                                                     $dd = date('Y-m-d H:m:s');
-                                                    for ($i = 1; $i <= $_POST['total']; $i++) {
+                                                    $total = $_POST['total'];
+                                                    for ($i = 1; $i <= $total; $i++) {
+                                                        // echo $_POST["txt$i"]."<br>";
+                                                        // echo $_POST["q$i"]."<br>";
+                                                        // echo $_POST["offer$i"]."<br>";
                                                         $sql_s = "INSERT INTO tbl_user_vote (uv_key, uv_name, uv_date, uv_text, uv_vote, uv_offer) values ('{$_GET['id']}','{$_SESSION['user_name']}','$dd','{$_POST["txt$i"]}','{$_POST["q$i"]}','{$_POST['offer']}')";
                                                         $qr_s = mysqli_query($conn, $sql_s);
-                                                        if($qr_s){
+                                                        if ($qr_s) {
                                                             $sql_up = "UPDATE tbl_repair SET rp_vote ='2' WHERE rp_job ='{$_GET['id']}'";
                                                             $qr_up = mysqli_query($conn, $sql_up);
-                                                            if($qr_up){
-                                                                echo "<script>swal({
-                                                                    title: 'ทำแบบประเมินเรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                                            //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                                    type: 'success', //success, warning, danger
-                                                                    timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                                    showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                                }, function(){
-                                                                    window.location.href ='index.php?page=data_repair'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                                    })</script>";
-                                                            }
                                                         }
                                                     }
-                                                   
+                                                    echo "<script>swal({
+                                                        title: 'ทำแบบประเมินเรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
+                                                //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
+                                                        type: 'success', //success, warning, danger
+                                                        timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
+                                                        showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
+                                                    }, function(){
+                                                        window.location.href ='index.php?page=data_repair'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
+                                                        })</script>";
                                                 }
                                                 $i++;
                                             }
 
 
                                             ?>
-<div style="display:none ;">
-                                            <input type="text" name="total" value="<?= $i ?>"></div>
+
                             </div>
                             </tbody>
                             </table>
@@ -119,6 +119,7 @@
                             <p>ข้อเสนอแนะเพิ่มเติม</p>
                             <textarea name="offer" id="" class="form-control"></textarea>
                             <br>
+                            <input style="display: none;" type="text" name="total" value="<?= $i ?>">
                             <div class="pull-right"> <button class="btn btn-primary" name="btn_save">บันทึก</button></div>
 
 

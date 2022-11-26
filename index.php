@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+$config['sess_expire_on_close'] = true;
 date_default_timezone_set('Asia/Bangkok');
 include 'connect_db.php';
 

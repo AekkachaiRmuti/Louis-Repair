@@ -91,6 +91,7 @@
                                                         <td>
                                                             <?php
                                                             if ($rs_vote["vote_id"] == '1') {
+                                                                $dis = "";
                                                             ?>
 
                                                                 <p style="color: blue;"><b><small> <?= $rs_vote["vote_name"] ?></small></b></p>
@@ -185,6 +186,7 @@
                                                             <?php
                                                             }
                                                             if ($rs_vote["vote_id"] == '2') {
+                                                                
                                                                 $dis = "disabled";
                                                             ?>
 

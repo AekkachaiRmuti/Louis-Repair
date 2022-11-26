@@ -39,14 +39,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                $sql_vote = "SELECT *, sum(if(uv_vote = 5,uv_vote*5,''))  + sum(if(uv_vote = 4,uv_vote*4,'')) + sum(if(uv_vote = 3,uv_vote*3,''))+ sum(if(uv_vote = 2,uv_vote*2,''))+ sum(if(uv_vote = 1,uv_vote*1,'')) as q1  FROM `tbl_user_vote`
+                                                LEFT OUTER JOIN tbl_repair on tbl_repair.rp_job = tbl_user_vote.uv_key
+                                                GROUP BY uv_key;";
+                                                $qr_vote = mysqli_query($conn, $sql_vote);
+
+                                                while($rs_vote = mysqli_fetch_assoc($qr_vote)){
+                                                  
+                                                ?>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><a href="index.php?page=view_vote&vote_key=<?= $rs_vote['rp_job'] ?>"><?= $rs_vote['rp_job'] ;?></a></td>
+                                                    <td><?= $rs_vote['rp_date_repair'] ;?></td>
+                                                    <td><?= $rs_vote['rp_user_accept'] ;?></td>
+                                                    <td><a href="index.php?page=view_vote&vote_key=<?= $rs_vote['rp_job'] ?>"><?= $rs_vote['uv_name'] ;?></a></td>
+                                                    <td> <?= number_format($rs_vote['q1']/5,2) ;?></td>
+                                                    <td><?= $rs_vote['uv_offer'] ;?></td>
                                                 </tr>
+                                                <?php
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
 

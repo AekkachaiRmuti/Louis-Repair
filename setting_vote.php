@@ -26,8 +26,32 @@
                                 <div class="card-header">
                                     <h3>การตั้งค่าแบบประเมิน</h3>
                                     <button class="btn btn-success" name="add_txt" type="submit">เพิ่ม</button>
+                                    <small>1.ด้านพนักงานผู้ให้บริการ
+1.1 การให้บริการด้วยความสุภาพ เป็นมิตร
+1.2 ความตั้งใจและกระตือรือร้นในการให้บริการ
+1.3 การให้คำแนะนำและตอบข้อซักถามได้ชัดเจน
+
+2.ด้านขั้นตอนการให้บริการ
+2.1 ความสะดวก รวดเร็วในการให้บริการ
+2.2 ระยะเวลาในการให้บริการมีความเหมาะสม
+2.3 การให้บริการมีความเป็นระบบ มีการแจ้งสาเหตุของปัญหา ความคืบหน้าของการให้บริการ</small>
                                 </div>
                                 <?PHP
+                                $total = $_POST['total'];
+                                for ($i = 1; $i <= $total; $i++) {
+                                    if (isset($_POST["btn_save$i"])) {
+
+                                       echo $txt = $_POST["txt_a$i"];
+                                       echo $key_id = $_POST["key_id$i"];
+                                        $sql_update = "UPDATE tbl_vote_txt SET vt_txt = '$txt' WHERE vt_id = '$key_id'";
+                                        $qr_update = mysqli_query($conn, $sql_update);
+                                        if ($qr_update) {
+                                            echo "<script>window.location.href='index.php?page=setting_vote'</script>";
+                                        }
+                                    }
+                                }
+
+
                                 if (isset($_POST['add_txt'])) {
                                     $sql_add = "INSERT INTO tbl_vote_txt (vt_txt) values ('**เพิ่มข้อความใหม่**')";
                                     $qr_add = mysqli_query($conn, $sql_add);
@@ -47,7 +71,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                      
+
 
                                             $i = 1;
                                             $sql_txt = "SELECT * FROM `tbl_vote_txt`";
@@ -58,8 +82,9 @@
                                                     <td><?= $i ?></td>
                                                     <td><textarea name="txt_a<?= $i ?>" id="" class="form-control"><?= $rs_txt['vt_txt'] ?></textarea></td>
                                                     <td>
-                                                        <input type="text" name="id<? $i ?>" value="<?= $rs_txt['vt_id'] ?>">
-                                                        <input type="text" name="total" value="<?= $i ?>">
+                                                        <div style="display:none ;"><input type="text" name="key_id<?= $i ?>" value="<?= $rs_txt['vt_id'] ?>">
+                                                        <input type="text" name="total" value="<?= $i ?>"></div>
+                                                        
                                                         <div class="button-group">
                                                             <button class="btn btn-primary" type="submit" name="btn_save<?= $i ?>">Save</button>
                                                             <button class="btn btn-danger" type="submit" name="btn_del<?= $i ?>">Delete</button>
@@ -70,19 +95,7 @@
 
                                                 $i++;
                                             }
-                                            $total = $_POST['total'];
-                                            for ($i = 1; $i <= $total; $i++) {
-                                                if (isset($_POST["btn_save$i"])) {
-                                                   
-                                                    $txt = $_POST["txt_a$i"];
-                                                    $id = $_POST["id$i"];
-                                                    $sql_update = "UPDATE tbl_vote_txt SET vt_txt = '$txt' WHERE vt_id = '$id'";
-                                                    $qr_update = mysqli_query($conn, $sql_update);
-                                                    if ($qr_update) {
-                                                        echo "<script>window.location.href='index.php?page=setting_vote'</script>";
-                                                    }
-                                                }
-                                            }
+
                                             ?>
                                         </tbody>
                                     </table>

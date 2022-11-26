@@ -2,6 +2,10 @@
     .chartone {
         align-content: center;
     }
+    img{
+        border-radius: 10px;
+
+    }
 </style>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -41,7 +45,7 @@
 
                                    ?>
                                     <a>ข้อมูลอุปกรณ์</a><br>
-                                    <center><img src="./<?= $rs_invt['add_picture']?>" width="500 rem" /></center>
+                                    <center><img  src="./<?= $rs_invt['add_picture']?>" width="500 rem" /></center>
                                     
                                     <hr>
                                     <table style="width: 100%;">
