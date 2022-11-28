@@ -41,7 +41,7 @@ if (isset($_POST['btn_login'])) {
         $_SESSION['pst_id'] =  $rs->pst_id;
         $_SESSION['pst_name'] =  $rs->pst_name;
         $_SESSION['pst_department'] =  $rs->pst_department;
-        $_SESSION["sestime"] = $logtime;
+        $_SESSION["settime"] = $logtime;
 
 
 

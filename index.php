@@ -6,30 +6,15 @@ date_default_timezone_set('Asia/Bangkok');
 include 'connect_db.php';
 
 session_start();
-//เวลาปัจจุบัน จาก server
-$hour = 0; //เวลาทด เป็น + หรือ - ถ้าเวลาของ Server ไม่ตรงกับประเทศไทย
-$min = 0; //เวลาทด เป็น + หรือ - ถ้าเวลาของ Server ไม่ตรงกับประเทศไทย
-$logtime = date("U", mktime(date("H") + $hour, date("i") + $min));
-$time = $_SESSION["sestime"];
+
+
+
+
 
 if ($_SESSION['user_name'] == '') {
     echo "<script> window.location.href ='login.php';</script>";
 }
 
-
-// if ($logtime - $time > 10) { //กำหนดเวลาที่จะให้อยู่บนระบบได้ที่นี่ 60=1 นาที
-//    session_destroy();
-// } else {
-//     echo "<script>swal({
-//         title: 'หมดเวลาการเข้าสู่ระบบ!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-//     text: 'กรุณาเข้าสู่ระบบอีกครั้ง.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-//         type: 'warning', //success, warning, danger
-//         timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-//         showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-//     }, function(){
-//         window.location.href ='logout.php'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-//         })</script>";
-// }
 ?>
 
 <head>
@@ -42,7 +27,6 @@ if ($_SESSION['user_name'] == '') {
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
-
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -111,8 +95,44 @@ if ($_SESSION['user_name'] == '') {
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-
-
+<!-- sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<?php
+//กำหนดเวลาที่สามารถอยู่ในระบบ
+$sessionlifetime = 1; //กำหนดเป็นนาที
+ 
+if(isset($_SESSION["settime"])){
+	$seclogin = (time()-$_SESSION["settime"])/60;
+	//หากไม่ได้ Active ในเวลาที่กำหนด
+	if($seclogin>$sessionlifetime){
+		echo "<script>swal({
+            title: 'SESSION หมดเวลา!',
+            text: 'กรุณาเข้าสู่ระบบใหม่อีกครั้ง!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                window.location.href='logout.php';
+              swal('ออกจากระบบเรียบร้อย!', {
+                icon: 'success',
+              });
+             } else {
+               
+              swal('คุณต้องการอยู่ในระบบต่อไป!');
+            
+             }
+          });</script>";
+		// header("location:logout.php");
+		exit;
+	}else{
+		$_SESSION["settime"] = time();
+	}
+}else{
+	$_SESSION["settime"] = time();
+}
+?>
 
     <script src="./chart/canvas.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -173,6 +193,7 @@ if ($_SESSION['user_name'] == '') {
             <a href="index.php?page=home" class="brand-link">
                 <img src="image_louis/11.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><b>Louis Repair</b></span>
+                <small><?= $seclogin?></small>
             </a>
 
             <!-- Sidebar -->
@@ -185,7 +206,7 @@ if ($_SESSION['user_name'] == '') {
                     <div class="info">
                         <a href="?page=home" class="d-block"><?= $_SESSION['user_name'] ?> </a>
                         <a style="color:aliceblue"><?= $_SESSION['pst_name'] ?></a><br>
-                        <!-- <small><?= "อยู่บนระบบนาน " . ($logtime - $time) . " วินาที แล้ว"?></small> -->
+                       
                     </div>
                 </div>
 
@@ -235,7 +256,7 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=$level1?>>
+                        <!-- <li class="nav-item" <?=$level1?>>
 
                             <a href="index.php?page=plan_maintenance&pm=pm_plan" class="nav-link">
                                 <i class="fa fa-handshake-o nav-icon" aria-hidden="true"></i>
@@ -246,7 +267,7 @@ if($_SESSION["level_id"] == 2){
                                     <span class="badge badge-info right"></span>
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item" <?=$level1?>>
 
                             <a href="index.php?page=inventory" class="nav-link">
