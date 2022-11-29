@@ -134,7 +134,7 @@ include './config/connect_db.php';
                                         $urgency = $_POST['urgency'];
                                         $problem_work = $_POST['problem_work'];
                                         $upload = basename($_FILES['fileupload']['name']);
-                                        $date_create = date("Y-m-d H:m:s");
+                                        $date_create = date("Y-m-d");
                                         if ($upload <> '') {   //not select file
                                             //โฟลเดอร์ที่จะ upload file เข้าไป 
                                             $path = "img_inventory/";
