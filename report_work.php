@@ -79,15 +79,15 @@
                                         </div>
                                         <hr>
                                         <?php
-                                        if(!$_GET['d1']){
-                                            $ds = date("d-m-Y", strtotime("first day of this month")); 
+                                        if (!$_GET['d1']) {
+                                            $ds = date("d-m-Y", strtotime("first day of this month"));
                                             $de = date("d-m-Y", strtotime("last day of this month"));
-                                        }else{
+                                        } else {
                                             $ds = $_GET['d1'];
                                             $de = $_GET['d2'];
                                         }
                                         ?>
-                                        <h3>สถิติการปฎิบัติงาน : <?= $ds?> ถึง <?= $de  ?></h3>
+                                        <h3>สถิติการปฎิบัติงาน : <?= $ds ?> ถึง <?= $de  ?></h3>
                                         <div class="col-md-3 col-sm-12 col-3">
 
                                             <div class="form-group">
@@ -108,25 +108,25 @@
 
                                                 <label for="" style="color: red;">**คลิกปุ่มค้นหา</label><br>
                                                 <button type="submit" name="btn_find" class="btn btn-success">ค้นหา</button>
-<?php
-if(isset($_POST['btn_find'])){
-    echo "<script>window.location.href='index.php?page=report_work&d1={$_POST['date_s']}&d2={$_POST['date_e']}'</script>";
-}
-?>
+                                                <?php
+                                                if (isset($_POST['btn_find'])) {
+                                                    echo "<script>window.location.href='index.php?page=report_work&d1={$_POST['date_s']}&d2={$_POST['date_e']}'</script>";
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                         <?php
-                                     
-                                      
-                                            $sql_rp = "SELECT COUNT(rp_type_repair) as c_count, type_name FROM `tbl_repair` 
+
+
+                                        $sql_rp = "SELECT COUNT(rp_type_repair) as c_count, type_name FROM `tbl_repair` 
                                              LEFT OUTER JOIN tbl_typework_repair on tbl_typework_repair.type_id = tbl_repair.rp_type_repair
                                               WHERE rp_date_repair BETWEEN '$ds' and '$de' GROUP BY rp_type_repair;";
-                                            $qr_rp = mysqli_query($conn, $sql_rp);
-                                            $dataPoints = array();
-                                            while ($rs_rp = mysqli_fetch_array($qr_rp)) {
-                                                array_push($dataPoints, array("label" => $rs_rp['type_name'], "y" => $rs_rp['c_count']));
-                                            }
-                                     
+                                        $qr_rp = mysqli_query($conn, $sql_rp);
+                                        $dataPoints = array();
+                                        while ($rs_rp = mysqli_fetch_array($qr_rp)) {
+                                            array_push($dataPoints, array("label" => $rs_rp['type_name'], "y" => $rs_rp['c_count']));
+                                        }
+
                                         ?>
                                         <script>
                                             window.onload = function() {
