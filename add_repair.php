@@ -144,7 +144,7 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
     
                                                  
                                                 }
-                                                $sql_sc = "UPDATE tbl_repair SET `rp_date_success` ='$date_succuss',`rp_cause`='$method_edit', `rp_problem_success`='$problem_work',`rp_status`='4',`rp_pic_success`='$path_link'  ,rp_vote ='1'WHERE rp_id ='$id'";
+                                                $sql_sc = "UPDATE tbl_repair SET `rp_date_success` ='$date_succuss',`rp_cause`='$method_edit', `rp_problem_success`='$problem_work',`rp_status`='4',`rp_pic_success`='$path_link'  ,rp_vote ='1' WHERE rp_id ='$id'";
                                             $qr_sc = mysqli_query($conn, $sql_sc);
 
                                             if($qr_sc){
@@ -169,7 +169,7 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
 
                                             if ($date_next <> '') {
                                                 // insert data into database LouisRepair
-                                                $sql_repair = "UPDATE tbl_repair SET rp_date_success = 'กำลังดำเนินการ',rp_date_next='$date_next',rp_user_accept = '{$_SESSION['user_name']}',rp_cause='กำลังดำเนินการ',rp_status = '3' WHERE rp_id ='$id'";
+                                                $sql_repair = "UPDATE tbl_repair SET rp_date_success = 'กำลังดำเนินการ',rp_date_next='$date_next',rp_user_accept = '{$_SESSION['user_name']}',rp_cause='กำลังดำเนินการ',rp_status = '3',rp_user_position = '{$_SESSION['pst_name']}' WHERE rp_id ='$id'";
                                                 $qr_repair = mysqli_query($conn, $sql_repair);
 
                                                 if($qr_repair){

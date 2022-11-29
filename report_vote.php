@@ -29,12 +29,12 @@
                                         <table class="table-striped table-bordered detail-view" id="example"" style=" width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>เลขที่แจ้งซ่อม</th>
-                                                    <th>วันที่แจ้งซ่อม</th>
-                                                    <th>ผู้ดำเนินการ</th>
-                                                    <th>ผู้ทำแบบประเมิน</th>
-                                                    <th>ผลประเมิน</th>
-                                                    <th>ข้อเสนอแนะ</th>
+                                                    <th style="text-align: center;">เลขที่แจ้งซ่อม</th>
+                                                    <th style="text-align: center;">วันที่แจ้งซ่อม</th>
+                                                    <th style="text-align: center;">ผู้ดำเนินการ</th>
+                                                    <th style="text-align: center;">ผู้ทำแบบประเมิน</th>
+                                                    <th style="text-align: center;">ผลประเมิน</th>
+                                                    <th style="text-align: center;">ข้อเสนอแนะ</th>
                                                     
                                                 </tr>
                                             </thead>
@@ -53,7 +53,7 @@
                                                     <td><?= $rs_vote['rp_date_repair'] ;?></td>
                                                     <td><?= $rs_vote['rp_user_accept'] ;?></td>
                                                     <td><a href="index.php?page=view_vote&vote_key=<?= $rs_vote['rp_job'] ?>"><?= $rs_vote['uv_name'] ;?></a></td>
-                                                    <td> <?= number_format($rs_vote['q1']/5,2) ;?></td>
+                                                    <td style="text-align: center;"> <?= number_format($rs_vote['q1']/5,2)/10 ;?></td>
                                                     <td><?= $rs_vote['uv_offer'] ;?></td>
                                                 </tr>
                                                 <?php

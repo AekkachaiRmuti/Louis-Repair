@@ -41,23 +41,43 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
+                                            <?php
+                                            $i =1;
+                                             $sql_rp = "SELECT * FROM `tbl_repair` LEFT OUTER JOIN tbl_urgency ON tbl_urgency.ug_id = tbl_repair.rp_urgency LEFT OUTER JOIN tbl_typework_repair ON tbl_typework_repair.type_id = tbl_repair.rp_type_repair LEFT OUTER JOIN tbl_category ON tbl_category.cate_id = tbl_repair.rp_name_inventory LEFT OUTER JOIN tbl_status ON tbl_status.sts_id = tbl_repair.rp_status 
+                                             LEFT OUTER JOIN tbl_position on tbl_position.pst_id = tbl_repair.rp_position
+                                             WHERE tbl_status.sts_id = '4';";
+                                             $qr_rp = mysqli_query($conn, $sql_rp);
+
+                                             while($rs_rp = mysqli_fetch_assoc($qr_rp)){
+                                            ?>
                                                 <tr>
-                                                    <td><small>No.028384384</small><br><?= date("Y-m-d H:m:s") ?></td>
-                                                    <td>Aekkachia namwicha<br><small>(IT Support)</small></td>
-                                                    <td>ซ่อมบำรุง</td>
-                                                    <td>หมึกหมด</td>
-                                                    <td>เติมหมึก 4 สี</td>
-                                                    <td>Aekkachai Namweicha<br><small>IT Support</small></td>
-                                                    <td><?= date("Y-m-d H:m:s") ?></td>
-                                                    <td>00.00</td>
-                                                    <td>สำเร็จ</td>
+                                                    <td><small>No.<?= $rs_rp["rp_job"]?></small><br> <?= $rs_rp["rp_date_repair"]?></td>
+                                                    <td><?= $rs_rp["rp_name"]?><br><small><?= $rs_rp["pst_name"]?></small></td>
+                                                    <td><?= $rs_rp["type_name"]?></td>
+                                                    <td><?= $rs_rp["rp_problem"]?></td>
+                                                    <td><?= $rs_rp["rp_problem_success"]?></td>
+                                                    <td><?= $rs_rp["rp_user_accept"]?><br><small><?= $rs_rp["rp_user_position"]?></small></td>
+                                                    <td><?= $rs_rp["rp_date_success"]?></td>
+                                                    <?php
+                                                    $r_id = $rs_rp['rp_id'];
+                                                    $total ="SELECT sum(exp_maintenance+exp_part+exp_invt+exp_vat) as sum_baht FROM `tbl_expenses` WHERE exp_repair = '$r_id'";
+                                                    $qr_total = mysqli_query($conn, $total);
+                                                    $rs_total = mysqli_fetch_assoc($qr_total);
+                                                    ?>
+                                                    <td><?= number_format($rs_total["sum_baht"],2)?></td>
+                                                    <td><?= $rs_rp['sts_name']?></td>
                                                 </tr>
+                                                <?php
+                                                $i++;
+                                             }
+                                                ?>
                                             </tbody>
                                         </table>
 
                                     </div>
                                     <hr>
-                                    <h3>สถิติการปฎิบัติงาน : 1 มกราคม 2565 ถึง 31 มกราคม 2565</h3>
+                                    <h3>สถิติการปฎิบัติงาน : <?= date("d-m-Y", strtotime("first day of this month"));?> ถึง <?= date("d-m-Y", strtotime("last day of this month"));?></h3>
                                     <div class="col-md-3 col-sm-12 col-3">
 
                                         <div class="form-group">

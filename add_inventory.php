@@ -112,13 +112,13 @@
 
                                     <?php
                                     if (isset($_POST['btn_update'])) {
-                                        $sql_update = "UPDATE tbl_add_inventory SET `add_code` = '{$_POST['add_']}',`add_name`='{$_POST['add_name']}',`add_serail`='{$_POST['add_serail']}',`add_price`='{$_POST['add_price']}',`add_category`='{$_POST['add_category']}',
+                                        $sql_update = "UPDATE tbl_add_inventory SET `add_code` = '{$_POST['add_code']}',`add_name`='{$_POST['add_name']}',`add_serail`='{$_POST['add_serail']}',`add_price`='{$_POST['add_price']}',`add_category`='{$_POST['add_category']}',
     `add_department`='{$_POST['add_department']}',`add_user`='{$_POST['add_user']}',`add_date_start`='{$_POST['add_date_start']}',`add_location_setup`='{$_POST['add_location_setup']}',`add_status`='{$_POST['add_status']}',`add_detail`='{$_POST['add_detail']}',
     `add_productby`='{$_POST['add_productby']}',`add_varanty`='{$_POST['add_varanty']}',`add_varanty_expire`='{$_POST['add_varanty_expire']}' WHERE add_id ='{$_GET['id']}'";
                                         $qr_update = mysqli_query($conn, $sql_update);
                                         if ($qr_update) {
                                             echo "<script>swal({
-            title: 'เพิ่มอุปกรณ์เรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
+            title: 'แก้ไขอุปกรณ์เรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
     //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
             type: 'success', //success, warning, danger
             timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้

@@ -35,7 +35,7 @@
                                         <div class="description-block border-right">
                                             <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span> -->
                                             <?php
-                                            $sql_co = "SELECT COUNT(add_code) as cca FROM tbl_add_inventory";
+                                            $sql_co = "SELECT COUNT(add_id) as cca ,add_status FROM tbl_add_inventory WHERE add_status = 'ใช้งานปกติ'";
                                             $qr_co = mysqli_query($conn, $sql_co);
                                             $rs_co = mysqli_fetch_array($qr_co);
                                             ?>
@@ -66,7 +66,12 @@
                                     <div class="col-sm-2 col-2">
                                         <div class="description-block border-right">
                                             <!-- <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                                            <h5 class="description-header">1200</h5>
+                                            <?php
+                                            $sql_co1 = "SELECT COUNT(add_id) as cca ,add_status FROM tbl_add_inventory WHERE add_status = 'เลิกใช้งาน'";
+                                            $qr_co1 = mysqli_query($conn, $sql_co1);
+                                            $rs_co1 = mysqli_fetch_array($qr_co1);
+                                            ?>
+                                            <h5 class="description-header"><?= $rs_co1["cca"]?></h5>
                                             <span class="description-text">เลิกใช้งาน</span>
                                         </div>
 
@@ -74,7 +79,12 @@
                                     <div class="col-sm-2 col-2">
                                         <div class="description-block border-right">
                                             <!-- <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                                            <h5 class="description-header">1200</h5>
+                                            <?php
+                                            $sql_co3 = "SELECT COUNT(add_id) as cca ,add_status FROM tbl_add_inventory";
+                                            $qr_co3 = mysqli_query($conn, $sql_co3);
+                                            $rs_co3 = mysqli_fetch_array($qr_co3);
+                                            ?>
+                                            <h5 class="description-header"><?= $rs_co3["cca"]?></h5>
                                             <span class="description-text">ทั้งหมด</span>
                                         </div>
 

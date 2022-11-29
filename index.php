@@ -95,11 +95,11 @@ if ($_SESSION['user_name'] == '') {
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- sweet alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- sweet alert https://sweetalert.js.org/guides/-->
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
-$sessionlifetime = 1; //กำหนดเป็นนาที
+$sessionlifetime = 120; //กำหนดเป็นนาที
  
 if(isset($_SESSION["settime"])){
 	$seclogin = (time()-$_SESSION["settime"])/60;
@@ -109,8 +109,8 @@ if(isset($_SESSION["settime"])){
             title: 'SESSION หมดเวลา!',
             text: 'กรุณาเข้าสู่ระบบใหม่อีกครั้ง!',
             icon: 'warning',
-            buttons: true,
-            dangerMode: true,
+            // buttons: true,
+            // dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
@@ -193,7 +193,7 @@ if(isset($_SESSION["settime"])){
             <a href="index.php?page=home" class="brand-link">
                 <img src="image_louis/11.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><b>Louis Repair</b></span>
-                <small><?= $seclogin?></small>
+                <!-- <small><?= $seclogin?></small> -->
             </a>
 
             <!-- Sidebar -->
@@ -292,13 +292,14 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
+                    <hr>    
                         <li class="nav-item">
 
                             <a href="index.php?page=repair" class="nav-link">
                                 <i class="fa fa-bar-chart nav-icon" aria-hidden="true"></i>
                                 <p>
 
-                                    แจ้งซ่อม For User
+                                    แจ้งซ่อม
 
                                     <span class="badge badge-info right"></span>
                                 </p>
@@ -311,7 +312,7 @@ if($_SESSION["level_id"] == 2){
                                 <i class="fa fa-bar-chart nav-icon" aria-hidden="true"></i>
                                 <p>
 
-                                    ข้อมูลแจ้งปัญหา / งานซ่อม
+                                    ประเมินงานซ่อม
 
                                     <span class="badge badge-info right"></span>
                                 </p>
