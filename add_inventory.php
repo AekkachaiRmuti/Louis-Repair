@@ -17,8 +17,10 @@
             </div><!-- /.container-fluid -->
         </section>
         <?php
+        @$get_id = $_GET['id'];
         $i = 1;
-        $sql_invt = "SELECT * FROM `tbl_add_inventory` LEFT OUTER JOIN tbl_category on tbl_category.cate_id = tbl_add_inventory.add_category WHERE add_id='{$_GET['id']}'";
+        $sql_invt = "SELECT * FROM `tbl_add_inventory` LEFT OUTER JOIN tbl_category on tbl_category.cate_id = tbl_add_inventory.add_category WHERE add_id='$get_id
+        '";
         $qr_invt = mysqli_query($conn, $sql_invt);
 
         $rs_invt = mysqli_fetch_assoc($qr_invt);
@@ -37,11 +39,11 @@
                                         <div class="col-sm-12 col-lg-6">
 
                                             <label for="">รหัสอุปกรณ์</label>
-                                            <input type="text" name="add_code" value="<?= $rs_invt['add_code'] ?>" class="form-control" required>
+                                            <input type="text" name="add_code" value="<?= @$rs_invt['add_code'] ?>" class="form-control" required>
                                             <label for="">ซีเรียลนัมเบอร์</label>
-                                            <input type="text" name="add_serail" value="<?= $rs_invt['add_serail'] ?>" class="form-control">
+                                            <input type="text" name="add_serail" value="<?= @$rs_invt['add_serail'] ?>" class="form-control">
 
-                                            <label for="">หมวดหมู่อุปกรณ์ <i style="color:red ;"><?= $rs_invt['cate_name'] ?></i></label>
+                                            <label for="">หมวดหมู่อุปกรณ์ <i style="color:red ;"><?= @$rs_invt['cate_name'] ?></i></label>
                                             <select name="add_category" id="" class="form-control">
                                                 <option value="">-หมวดหมู่อุปกรณ์-</option>
                                                 <?php
@@ -57,10 +59,10 @@
 
                                             </select>
                                             <label for="">ผู้ใช้งาน</label>
-                                            <input name="add_user" id="" type="text" class="form-control" value="<?= $rs_invt['add_user'] ?>" required>
+                                            <input name="add_user" id="" type="text" class="form-control" value="<?= @$rs_invt['add_user'] ?>" required>
 
                                             <label for="">สถานที่ติดตั้ง</label>
-                                            <input type="text" name="add_location_setup" id="" class="form-control" value="<?= $rs_invt['add_location_setup'] ?>">
+                                            <input type="text" name="add_location_setup" id="" class="form-control" value="<?= @$rs_invt['add_location_setup'] ?>">
 
 
                                         </div>
@@ -69,42 +71,42 @@
                                         <div class="col-sm-12 col-lg-6">
 
                                             <label for="">ชื่ออุปกรณ์</label>
-                                            <input type="text" name="add_name" class="form-control" value="<?= $rs_invt['add_name'] ?>">
+                                            <input type="text" name="add_name" class="form-control" value="<?= @$rs_invt['add_name'] ?>">
                                             <label for="">ราคา</label>
-                                            <input type="number" name="add_price" class="form-control" value="<?= $rs_invt['add_price'] ?>" require>
+                                            <input type="number" name="add_price" class="form-control" value="<?= @$rs_invt['add_price'] ?>" require>
                                             <label for="">หน่วยงาน/แผนก</label>
-                                            <input type="text" name="add_department" id="" class="form-control" value="<?= $rs_invt['add_department'] ?>">
+                                            <input type="text" name="add_department" id="" class="form-control" value="<?= @$rs_invt['add_department'] ?>">
 
                                             <label for="">วันเริ่มใช้งาน</label>
-                                            <input type="date" name="add_date_start" class="form-control" value="<?= $rs_invt['add_date_start'] ?>">
-                                            <label for="">สถานะอุปกรณ์ <i style="color:red ;"><?= $rs_invt['add_status'] ?></i></label><br>
+                                            <input type="date" name="add_date_start" class="form-control" value="<?= @$rs_invt['add_date_start'] ?>">
+                                            <label for="">สถานะอุปกรณ์ <i style="color:red ;"><?= @$rs_invt['add_status'] ?></i></label><br>
                                             <input type="radio" name="add_status" id="ck" value="ใช้งานปกติ"> <label for="">ใช้งานปกติ</label>
                                             <input type="radio" name="add_status" id="ck" value="เลิกใช้งาน"> <label for="">เลิกใช้งาน</label>
                                         </div>
                                         <div class="col-sm-12 col-md-12 col-lg-12">
                                             <label for="">รายละเอียดเพิ่มเติม</label>
-                                            <textarea name="add_detail" id="" class="form-control" ><?= $rs_invt['add_detail'] ?></textarea>
+                                            <textarea name="add_detail" id="" class="form-control" ><?= @$rs_invt['add_detail'] ?></textarea>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <h3>ข้อมูลประกัน</h3>
                                             <label for="">ผู้ผลิต</label>
-                                            <input type="text" name="add_productby" class="form-control" value="<?= $rs_invt['add_productby'] ?>">
+                                            <input type="text" name="add_productby" class="form-control" value="<?= @$rs_invt['add_productby'] ?>">
                                             <label for="">การรับประกัน</label>
-                                            <input type="text" name="add_varanty" class="form-control" value="<?= $rs_invt['add_varanty'] ?>">
+                                            <input type="text" name="add_varanty" class="form-control" value="<?= @$rs_invt['add_varanty'] ?>">
                                             <label for="">วันที่หมดประกัน</label>
-                                            <input type="date" name="add_varanty_expire" class="form-control" value="<?= $rs_invt['add_varanty_expire'] ?>">
+                                            <input type="date" name="add_varanty_expire" class="form-control" value="<?= @$rs_invt['add_varanty_expire'] ?>">
                                         </div>
                                         <br>
                                         <center>
                                             <?php
-                                            if (!$_GET['id']) {
+                                            if (!@$_GET['id']) {
                                                 $btnU = "style='display:none';";
                                             } else {
                                                 $btnS = "style='display:none';";
                                             }
                                             ?>
-                                            <button name="btn_add" type="submit" class="btn btn-primary mt-5" <?= $btnS ?>>เพิ่มอุปกรณ์</button>
-                                            <button name="btn_update" type="submit" class="btn btn-warning mt-5" <?= $btnU ?>>บันทึกการแก้ไข</button>
+                                            <button name="btn_add" type="submit" class="btn btn-primary mt-5" <?= @$btnS ?>>เพิ่มอุปกรณ์</button>
+                                            <button name="btn_update" type="submit" class="btn btn-warning mt-5" <?= @$btnU ?>>บันทึกการแก้ไข</button>
 
                                         </center>
                                     </div>

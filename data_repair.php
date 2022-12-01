@@ -41,7 +41,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
                                     <?php
-                                    if ($_SESSION['level_id'] == 3 or $_SESSION['level_id'] == 2) {
+                                    if (@$_SESSION['level_id'] == 3 or @$_SESSION['level_id'] == 2) {
                                     ?>
                                         <table class="table" id="example">
                                             <thead>

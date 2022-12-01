@@ -105,7 +105,7 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                         $rs_sum = mysqli_fetch_object($qr_sum);
                                         ?>
                                         <label for="">ค่าใช้จ่าย</label>
-                                        <input type="text" name="" value="<?= number_format($rs_sum->tolsum, 2) ?>" id="" class="form-control" disabled>
+                                        <input type="text" name="" value="<?= number_format(@$rs_sum->tolsum, 2) ?>" id="" class="form-control" disabled>
                                         <br>
                                         <div class="row col-12">
                                             <button type="submit" name="btn_add" class="btn btn-warning" style="width: 50%;">ดำเนินการ</button>
@@ -214,27 +214,27 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                                                 $sql_save = "SELECT * FROM `tbl_expenses` WHERE exp_repair='$id'";
                                                                 $qr_save = mysqli_query($conn, $sql_save);
                                                                 $rs_save = mysqli_fetch_array($qr_save);
-                                                                echo $rs_save;
+                                                                
                                                                 ?>
                                                                 <tr>
                                                                     <td>ค่าซ่อม </td>
-                                                                    <td><input type="text" name="exp_miantenance" value="<?= $rs_save["exp_maintenance"] ?>" id="" class="form-control" /></td>
-                                                                    <td><input type="text" name="exp_miantenance_detail" value="<?= $rs_save["exp_detail_maintenance"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_miantenance" value="<?= @$rs_save["exp_maintenance"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_miantenance_detail" value="<?= @$rs_save["exp_detail_maintenance"] ?>" id="" class="form-control" /></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>ค่าอะไหล่</td>
-                                                                    <td><input type="text" name="exp_part" value="<?= $rs_save["exp_part"] ?>" id="" class="form-control" /></td>
-                                                                    <td><input type="text" name="exp_part_detail" value="<?= $rs_save["exp_detail_part"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_part" value="<?= @$rs_save["exp_part"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_part_detail" value="<?= @$rs_save["exp_detail_part"] ?>" id="" class="form-control" /></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>ค่าอุปกรณ์</td>
-                                                                    <td><input type="text" name="exp_invt" value="<?= $rs_save["exp_invt"] ?>" id="" class="form-control" /></td>
-                                                                    <td><input type="text" name="exp_invt_detail" value="<?= $rs_save["exp_detail_invt"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_invt" value="<?= @$rs_save["exp_invt"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_invt_detail" value="<?= @$rs_save["exp_detail_invt"] ?>" id="" class="form-control" /></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>VAT 7%</td>
-                                                                    <td><input type="text" name="exp_vat" value="<?= $rs_save["exp_vat"] ?>" id="" class="form-control" /></td>
-                                                                    <td><input type="text" name="exp_vat_detail" value="<?= $rs_save["exp_detail_vat"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_vat" value="<?= @$rs_save["exp_vat"] ?>" id="" class="form-control" /></td>
+                                                                    <td><input type="text" name="exp_vat_detail" value="<?= @$rs_save["exp_detail_vat"] ?>" id="" class="form-control" /></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

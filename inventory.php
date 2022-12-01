@@ -146,7 +146,7 @@
                                             $i++;
                                         }
 
-                                        if($_GET['del']){
+                                        if(@$_GET['del']){
                                             echo "<script>swal({
                                                 title: 'คุณต้องการลบอุปกรณ์นี้ ใช่หรือไม่?',
                                                 // text: '',
@@ -165,7 +165,7 @@
                                                 }
                                               });</script>";
                                         }
-                                        if($_GET['delete_id']){
+                                        if(@$_GET['delete_id']){
                                             $sql_del = "DELETE FROM `tbl_add_inventory` WHERE `add_id` ='{$_GET['delete_id']}'";
                                             $qr_del = mysqli_query($conn, $sql_del);
                                             if($qr_del){

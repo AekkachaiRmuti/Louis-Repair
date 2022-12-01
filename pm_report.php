@@ -25,15 +25,15 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-info">
                                             <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ข้อมูลการทำงาน</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                    <a href="index.php?page=report_work">View</a>
                                                 </span>
@@ -43,15 +43,15 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-success">
                                             <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ความพึงพอใจ</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                 <a href="index.php?page=report_vote">View</a>
 
@@ -62,15 +62,15 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-warning">
                                             <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ทะเบียนอุปกรณ์</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                 <a href="index.php?page=report_inventory">View</a>
 
@@ -81,15 +81,15 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-danger">
                                             <span class="info-box-icon"><i class="fas fa-comments"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">สถิติการซ่อมบำรุง</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                 <a href="index.php?page=report_statistics">View</a>
 
@@ -100,15 +100,15 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-warning">
                                             <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ค่าซ่อมบำรุง</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                 <a href="index.php?page=report_maintenance">View</a>
 
@@ -119,15 +119,15 @@
 
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-12">
+                                    <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-danger">
                                             <span class="info-box-icon"><i class="fas fa-comments"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">จำนวนซอฟต์แวร์</span>
-                                                <!-- <div class="progress">
-                                                    <div class="progress-bar" style="width: 70%"></div>
-                                                </div> -->
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
                                                 <span class="progress-description">
                                                 <a href="#">View</a>
 

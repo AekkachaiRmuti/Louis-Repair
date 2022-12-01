@@ -96,7 +96,7 @@ if ($_SESSION['user_name'] == '') {
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- sweet alert https://sweetalert.js.org/guides/-->
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 $sessionlifetime = 120; //กำหนดเป็นนาที
@@ -109,12 +109,12 @@ if(isset($_SESSION["settime"])){
             title: 'SESSION หมดเวลา!',
             text: 'กรุณาเข้าสู่ระบบใหม่อีกครั้ง!',
             icon: 'warning',
-            // buttons: true,
-            // dangerMode: true,
+            //  buttons: true,
+            //  dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-                window.location.href='logout.php';
+                window.location.href='logout.php',
               swal('ออกจากระบบเรียบร้อย!', {
                 icon: 'success',
               });
@@ -124,7 +124,7 @@ if(isset($_SESSION["settime"])){
             
              }
           });</script>";
-		// header("location:logout.php");
+		//  header("location:logout.php");
 		exit;
 	}else{
 		$_SESSION["settime"] = time();
@@ -193,7 +193,7 @@ if(isset($_SESSION["settime"])){
             <a href="index.php?page=home" class="brand-link">
                 <img src="image_louis/11.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><b>Louis Repair</b></span>
-                <!-- <small><?= $seclogin?></small> -->
+                <!-- <small><?= @$seclogin?></small> -->
             </a>
 
             <!-- Sidebar -->
@@ -204,8 +204,8 @@ if(isset($_SESSION["settime"])){
                         <img src="img/programmer.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="?page=home" class="d-block"><?= $_SESSION['user_name'] ?> </a>
-                        <a style="color:aliceblue"><?= $_SESSION['pst_name'] ?></a><br>
+                        <a href="?page=home" class="d-block"><?= @$_SESSION['user_name'] ?> </a>
+                        <a style="color:aliceblue"><?= @$_SESSION['pst_name'] ?></a><br>
                        
                     </div>
                 </div>
@@ -222,11 +222,11 @@ if(isset($_SESSION["settime"])){
                         <!-- https://fontawesome.com/v4/icons/ -->
 
 <?php
-if($_SESSION["level_id"] == 1){
-    $level1 = "style='display: none';";
+if(@$_SESSION["level_id"] == 1){
+    @$level1 = "style='display: none';";
 }
-if($_SESSION["level_id"] == 2){
-    $level2 = "disabled";
+if(@$_SESSION["level_id"] == 2){
+    @$level2 = "disabled";
 }
 
 ?>
@@ -244,7 +244,7 @@ if($_SESSION["level_id"] == 2){
                             </a>
                         </li>
 
-                        <li class="nav-item" <?=$level1?>>
+                        <li class="nav-item" <?=@$level1?>>
 
                             <a href="index.php?page=rp_data" class="nav-link">
                                 <i class="fa fa-server nav-icon" aria-hidden="true"></i>
@@ -256,7 +256,7 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item" <?=$level1?>>
+                        <!-- <li class="nav-item" <?=@$level1?>>
 
                             <a href="index.php?page=plan_maintenance&pm=pm_plan" class="nav-link">
                                 <i class="fa fa-handshake-o nav-icon" aria-hidden="true"></i>
@@ -268,7 +268,7 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li> -->
-                        <li class="nav-item" <?=$level1?>>
+                        <li class="nav-item" <?=@$level1?>>
 
                             <a href="index.php?page=inventory" class="nav-link">
                                 <i class="fa fa-hdd-o nav-icon" aria-hidden="true"></i>
@@ -280,7 +280,7 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=$level1?>>
+                        <li class="nav-item" <?=@$level1?>>
 
                             <a href="index.php?page=pm_report" class="nav-link">
                                 <i class="fa fa-bar-chart nav-icon" aria-hidden="true"></i>
@@ -318,7 +318,7 @@ if($_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=$level1?>>
+                        <li class="nav-item" <?=@$level1?>>
                             <a href="#" class="nav-link">
                                 <i class="fa fa-cogs nav-icon"></i>
                                 <p>
@@ -342,6 +342,37 @@ if($_SESSION["level_id"] == 2){
                                         <p>ตั้งค่าแบบประเมิน</p>
                                     </a>
                                 </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-laptop nav-icon"></i>
+                                <p>
+                                    จัดการอุปกรณ์ไอที (Sathon)
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="index.php?page=manage_it" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ยืม-คืนอุปกรณ์</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.php?page=stock" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Stock</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.php?page=ups" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>UPS</p>
+                                    </a>
+                                </li>
+
 
                             </ul>
                         </li>
@@ -372,10 +403,10 @@ if($_SESSION["level_id"] == 2){
 
         if (isset($_GET['page'])) {
 
-            $page = $_GET['page'];
+           @$page = $_GET['page'];
         }
 
-        if (is_file($page . ".php"))
+        if (is_file(@$page . ".php"))
 
             include($page . ".php");
 

@@ -50,44 +50,27 @@
                                     </div>
                                 </div>
                                 <?php
-                                $dataPoints = array(
-                                    array("y" => 3373.64, "label" => "โปรแกรม(IT)"),
-                                    array("y" => 2435.94, "label" => "อุปกรณ์(IT)"),
-                                    array("y" => 1842.55, "label" => "ปัญหาระบบเครือข่าย"),
-                                    array("y" => 1828.55, "label" => "อื่นๆ"),
-                                    array("y" => 1039.99, "label" => "กล้องวงจรปิด"),
-                                    array("y" => 765.215, "label" => "งานติดตั้ง"),
-                                    array("y" => 612.453, "label" => "Onsite"),
-                                    array("y" => 1039.99, "label" => "แก้ไขข้อมูล"),
-                                    array("y" => 765.215, "label" => "แสกนนิ้ว"),
-                                    array("y" => 612.453, "label" => "ซ่อมบำรุงเชิงป้องกัน"),
-                                    array("y" => 1039.99, "label" => "งานซ่อม(IT)"),
-                                    array("y" => 765.215, "label" => "อบรม"),
-                                    array("y" => 612.453, "label" => "Insatall Software"),
-                                    array("y" => 765.215, "label" => "ซ่อมบำรุง"),
-                                    array("y" => 612.453, "label" => "Human Error")
-                                );
-                                $dataPoints1 = array(
-                                    array("y" => 3373.64, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-PC"),
-                                    array("y" => 2435.94, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-Printer"),
-                                    array("y" => 1842.55, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-Monitor"),
-                                    array("y" => 1828.55, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-DotMatrix"),
-                                    array("y" => 1039.99, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-Printer Thermal"),
-                                    array("y" => 765.215, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-UPS"),
-                                    array("y" => 612.453, "label" => "อุปกรณ์อิเล็กทรอนิคส์(EL)-Server")
-                                   
-                                );
-                                $dataPoints2 = array(
-                                    array("y" => 3373.64, "label" => "IT"),
-                                    array("y" => 2435.94, "label" => "บัญชี"),
-                                    array("y" => 1842.55, "label" => "การเงิน"),
-                                    array("y" => 1828.55, "label" => "การตลาด"),
-                                    array("y" => 1039.99, "label" => "จัดซื้อ"),
-                                    array("y" => 765.215, "label" => "คลังสินค้า"),
-                                    array("y" => 612.453, "label" => "ประสานงานขาย"),
-                                    array("y" => 612.453, "label" => "ฝ่ายขาย"),
-                                    array("y" => 612.453, "label" => "ส่งออก")
-                                );
+                                  $sql_type = "SELECT COUNT(rp_job) as count_type, type_name, rp_date_repair FROM `tbl_repair` LEFT OUTER JOIN tbl_typework_repair on tbl_typework_repair.type_id = tbl_repair.rp_type_repair GROUP by tbl_typework_repair.type_name;";
+                                  $qr_type = mysqli_query($conn, $sql_type);
+                                  $dataPoints = array();
+                                  while ($rs_type = mysqli_fetch_array($qr_type)) {
+                                      array_push($dataPoints,array("y" => $rs_type['count_type'], "label" => $rs_type['type_name']));
+                                      
+                                  }
+                                  $sql_type1 = "SELECT COUNT(rp_job) as count_type, cate_name, rp_date_repair FROM `tbl_repair` LEFT OUTER JOIN tbl_category on tbl_category.cate_id = tbl_repair.rp_name_inventory GROUP BY cate_name;";
+                                  $qr_type1 = mysqli_query($conn, $sql_type1);
+                                  $dataPoints1 = array();
+                                  while ($rs_type1 = mysqli_fetch_array($qr_type1)) {
+                                      array_push($dataPoints1,array("y" => $rs_type1['count_type'], "label" => $rs_type1['cate_name']));
+                                      
+                                  }
+                                  $sql_type2 = "SELECT dept_name, rp_date_repair,COUNT(rp_job) as c_job FROM `tbl_repair` LEFT OUTER JOIN tbl_position on tbl_position.pst_id = tbl_repair.rp_position LEFT OUTER JOIN tbl_department on tbl_department.dept_id = tbl_position.pst_department LEFT OUTER JOIN tbl_brance on tbl_brance.brn_id = tbl_department.dept_brance GROUP by dept_name;";
+                                  $qr_type2 = mysqli_query($conn, $sql_type2);
+                                  $dataPoints2 = array();
+                                  while ($rs_type2 = mysqli_fetch_array($qr_type2)) {
+                                      array_push($dataPoints2,array("y" => $rs_type2['c_job'], "label" => $rs_type2['dept_name']));
+                                      
+                                  }
                                 ?>
                                 <script>
                                     window.onload = function() {
@@ -103,7 +86,7 @@
                                             },
                                             data: [{
                                                 type: "column",
-                                                yValueFormatString: "#,##0.## tonnes",
+                                                yValueFormatString: "#,##0.## เครื่อง",
                                                 dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                                             }]
                                         });
@@ -121,7 +104,7 @@
                                             },
                                             data: [{
                                                 type: "column",
-                                                yValueFormatString: "#,##0.## tonnes",
+                                                yValueFormatString: "#,##0.## เครื่อง",
                                                 dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
                                             }]
                                         });

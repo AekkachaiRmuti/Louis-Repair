@@ -79,7 +79,7 @@
                                         </div>
                                         <hr>
                                         <?php
-                                        if (!$_GET['d1']) {
+                                        if (@!$_GET['d1']) {
                                             $ds = date("d-m-Y", strtotime("first day of this month"));
                                             $de = date("d-m-Y", strtotime("last day of this month"));
                                         } else {

@@ -113,7 +113,7 @@
 
                                     <!-- ./col -->
                                     <h3>สรุปข้อมูลงานซ่อม วันที่ <?= date("Y-m-d", strtotime("first day of this month")); ?> ถึง <?= date("Y-m-d"); ?></h3>
-                                    <div class="col-6 col-lg-6 col-md-12 col-sm-12">
+                                    <!-- <div class="col-6 col-lg-6 col-md-12 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <p>สถานะงานซ่อม แยกตาม ผู้ดำเนินการ</p>
@@ -145,7 +145,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-6 col-lg-6 col-md-12 col-sm-12">
                                         <div class="card">
@@ -264,7 +264,7 @@ LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY 
                                     <div class="col-6 col-lg-6 col-md-12 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <p>สถิติการซ่อมแยกตามหมวกหมู่</p>
+                                                <p>สถิติการซ่อมแยกตามหมวดหมู่</p>
                                             </div>
                                             <div class="card-body">
 

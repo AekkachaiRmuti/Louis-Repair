@@ -37,7 +37,7 @@
 2.3 การให้บริการมีความเป็นระบบ มีการแจ้งสาเหตุของปัญหา ความคืบหน้าของการให้บริการ</small> -->
                                 </div>
                                 <?PHP
-                                $total = $_POST['total'];
+                                @$total = $_POST['total'];
                                 for ($i = 1; $i <= $total; $i++) {
                                     if (isset($_POST["btn_save$i"])) {
 

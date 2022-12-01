@@ -30,12 +30,12 @@ align-content: center;
                         <div class="col-lg-12 col-md-12 col-sm-12">
                            
                             <div class="card-body">
-                                <table class="table table-striped table-bordered detail-view" id="example">
+                                <table class="table" id="example">
                                     <thead>
                                         <tr>
                                             <th>รหัสอุปกรณ์</th>
                                             <th>ซีเรียลนัมเบอร์</th>
-                                            <th>ชื่ออุปกรณ์</th>
+                                            
                                             <th>ยี่ห้อ/รุ่น</th>
                                             <th>หมวดหมู่อุปกรณ์</th>
                                             <th>หน่วยงาน/แผนก</th>
@@ -45,21 +45,30 @@ align-content: center;
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                    <?php
+                                    $sql_invt ="SELECT * FROM `tbl_add_inventory` LEFT OUTER JOIN tbl_category on tbl_category.cate_id = tbl_add_inventory.add_category";
+                                    $qr_invt = mysqli_query($conn, $sql_invt);
+                                    while($rs_invt = mysqli_fetch_assoc($qr_invt)){
+                                    ?>
                                         <tr>
-                                            <td>3JT94AA3JT94A</td>
-                                            <td>CNVkdkdkuu777</td>
-                                            <td>PC สำรอง แผนก IT</td>
-                                            <td>Dell</td>
-                                            <td>อุปกรณ์<br> Electronic</td>
-                                            <td>บัญชี (ACC)</td>
-                                            <td>นายเอกชัย นามวชิา สาขาสาทร</td>
-                                            <td>3 years<br> <i>Expire : 18/12/2022</i></td>
+                                            <td><?= $rs_invt['add_code']?></td>
+                                            <td><?= $rs_invt['add_serail']?></td>
+                                            <td><?= $rs_invt['add_name']?></td>
+                                      
+                                            <td>อุปกรณ์<br> <?= $rs_invt['cate_name']?></td>
+                                            <td><?= $rs_invt['add_location_setup']?></td>
+                                            <td><?= $rs_invt['add_user']?><br><small><?= $rs_invt['add_department']?></small></td>
+                                            <td><?= $rs_invt['add_varanty']?><br> <i>Expire : <?= $rs_invt['add_varanty_expire']?></i></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
                                                     Preview
                                                 </button><br>
                                             </td>
                                         </tr>
+                                        <?php
+                                    }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
