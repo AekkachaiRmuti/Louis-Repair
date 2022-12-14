@@ -120,7 +120,7 @@
 
                                         $sql_rp = "SELECT COUNT(rp_type_repair) as c_count, type_name FROM `tbl_repair` 
                                              LEFT OUTER JOIN tbl_typework_repair on tbl_typework_repair.type_id = tbl_repair.rp_type_repair
-                                              WHERE rp_date_repair BETWEEN '$ds' and '$de' GROUP BY rp_type_repair;";
+                                              WHERE rp_date_repair BETWEEN '$ds' and '$de'  and tbl_repair.rp_status ='4' GROUP BY rp_type_repair;";
                                         $qr_rp = mysqli_query($conn, $sql_rp);
                                         $dataPoints = array();
                                         while ($rs_rp = mysqli_fetch_array($qr_rp)) {

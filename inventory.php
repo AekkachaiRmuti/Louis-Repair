@@ -159,17 +159,21 @@
                                                     window.location.href='index.php?page=inventory&delete_id='+{$_GET['del']};
                                                   swal('ลบอุปกรณ์เรียบ!', {
                                                     icon: 'success',
+                                                   
                                                   });
+                                                 
                                                 } else {
                                                   swal('คุณไม่ต้องการลบ!');
                                                 }
-                                              });</script>";
+                                              });
+                                              
+                                              </script>";
                                         }
                                         if(@$_GET['delete_id']){
                                             $sql_del = "DELETE FROM `tbl_add_inventory` WHERE `add_id` ='{$_GET['delete_id']}'";
                                             $qr_del = mysqli_query($conn, $sql_del);
                                             if($qr_del){
-                                                echo "<script>swal('Good job!', 'ลบอุปกรณ์เรียบร้อย!', 'success');</script>";
+                                                echo "<script>swal('ลบอุปกรณ์เรียบร้อย', 'ลบอุปกรณ์เรียบร้อย!', 'success');window.location.href='index.php?page=inventory';</script>";
                                             }
                                         }
                                         ?>

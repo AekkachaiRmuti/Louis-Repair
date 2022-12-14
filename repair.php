@@ -28,7 +28,7 @@ include './config/connect_db.php';
 
         <div class="container">
             <div class="container-fluid">
-                <div class="card card-default ala">
+                <div class="card card-default ">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card-header">

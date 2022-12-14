@@ -138,6 +138,25 @@
 
                                     </div>
 
+                                    <div class="col-md-4 col-sm-6 col-12">
+                                        <div class="info-box bg-danger">
+                                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">รายงาน</span>
+                                                <span class="info-box-number">การแจ้งปัญหา IT Support</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%"></div>
+                                                </div>
+                                                <span class="progress-description">
+                                                <a href="index.php?page=it_problem">View</a>
+
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
 

@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-12 col-lg-12">
                                             <label for="">รายละเอียดเพิ่มเติม</label>
-                                            <textarea name="add_detail" id="" class="form-control" ><?= @$rs_invt['add_detail'] ?></textarea>
+                                            <textarea name="add_detail" id="" class="form-control"><?= @$rs_invt['add_detail'] ?></textarea>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <h3>ข้อมูลประกัน</h3>
@@ -187,25 +187,23 @@
                                             //คัดลอกไฟล์ไปเก็บที่เว็บเซริ์ฟเวอร์
 
                                             move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);
-                                            $sql_inventory = "INSERT INTO tbl_add_inventory (`add_code`,`add_name`,`add_serail`,`add_price`,`add_category`,
-                                           `add_department`,`add_user`,`add_date_start`,
-                                           `add_location_setup`,`add_status`,`add_detail`,`add_productby`,`add_varanty`,
-                                           `add_varanty_expire`,`add_picture`)
-                                           VALUES ('{$_POST['add_code']}','{$_POST['add_name']}','{$_POST['add_serail']}','{$_POST['add_price']}',
-                                           '{$_POST['add_category']}','{$_POST['add_department']}','{$_POST['add_user']}','{$_POST['add_date_start']}','{$_POST['add_location_setup']}','{$_POST['add_status']}','{$_POST['add_detail']}',
-                                           '{$_POST['add_productby']}','{$_POST['add_varanty']}','{$_POST['add_varanty_expire']}','$path_link')";
-                                            $qr_inventory = mysqli_query($conn, $sql_inventory);
-                                            if ($qr_inventory) {
-                                                echo "<script>swal({
-                                                   title: 'เพิ่มอุปกรณ์เรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                           //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                   type: 'success', //success, warning, danger
-                                                   timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                   showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                               }, function(){
-                                                   window.location.href ='index.php?page=inventory'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                   })</script>";
-                                            }
+                                        }
+                                        if ($upload == '') {
+                                            $path_link = '';
+                                        } else {
+                                            $path_link = $path . $newname;
+                                        }
+                                        $sql_inventory = "INSERT INTO tbl_add_inventory (`add_code`,`add_name`,`add_serail`,`add_price`,`add_category`,
+                                        `add_department`,`add_user`,`add_date_start`,
+                                        `add_location_setup`,`add_status`,`add_detail`,`add_productby`,`add_varanty`,
+                                        `add_varanty_expire`,`add_picture`)
+                                        VALUES ('{$_POST['add_code']}','{$_POST['add_name']}','{$_POST['add_serail']}','{$_POST['add_price']}',
+                                        '{$_POST['add_category']}','{$_POST['add_department']}','{$_POST['add_user']}','{$_POST['add_date_start']}','{$_POST['add_location_setup']}','{$_POST['add_status']}','{$_POST['add_detail']}',
+                                        '{$_POST['add_productby']}','{$_POST['add_varanty']}','{$_POST['add_varanty_expire']}','$path_link')";
+                                        $qr_inventory = mysqli_query($conn, $sql_inventory);
+                                        if ($qr_inventory) {
+                                            echo "<script>swal('เพิ่มอุปกรณ์เรียบร้อย', 'เพิ่มอุปกรณ์เรียบร้อย!', 'success');window.location.href='index.php?page=inventory';</script>";
+
                                         }
                                     }
                                     ?>

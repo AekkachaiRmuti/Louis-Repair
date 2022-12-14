@@ -85,7 +85,7 @@ if ($_SESSION['user_name'] == '') {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    
+
 </head>
 <style>
     /* * {
@@ -95,17 +95,17 @@ if ($_SESSION['user_name'] == '') {
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- sweet alert https://sweetalert.js.org/guides/-->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<?php
-//กำหนดเวลาที่สามารถอยู่ในระบบ
-$sessionlifetime = 120; //กำหนดเป็นนาที
- 
-if(isset($_SESSION["settime"])){
-	$seclogin = (time()-$_SESSION["settime"])/60;
-	//หากไม่ได้ Active ในเวลาที่กำหนด
-	if($seclogin>$sessionlifetime){
-		echo "<script>swal({
+    <!-- sweet alert https://sweetalert.js.org/guides/-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php
+    //กำหนดเวลาที่สามารถอยู่ในระบบ
+    $sessionlifetime = 120; //กำหนดเป็นนาที
+
+    if (isset($_SESSION["settime"])) {
+        $seclogin = (time() - $_SESSION["settime"]) / 60;
+        //หากไม่ได้ Active ในเวลาที่กำหนด
+        if ($seclogin > $sessionlifetime) {
+            echo "<script>swal({
             title: 'SESSION หมดเวลา!',
             text: 'กรุณาเข้าสู่ระบบใหม่อีกครั้ง!',
             icon: 'warning',
@@ -124,15 +124,15 @@ if(isset($_SESSION["settime"])){
             
              }
           });</script>";
-		//  header("location:logout.php");
-		exit;
-	}else{
-		$_SESSION["settime"] = time();
-	}
-}else{
-	$_SESSION["settime"] = time();
-}
-?>
+            //  header("location:logout.php");
+            exit;
+        } else {
+            $_SESSION["settime"] = time();
+        }
+    } else {
+        $_SESSION["settime"] = time();
+    }
+    ?>
 
     <script src="./chart/canvas.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -193,7 +193,7 @@ if(isset($_SESSION["settime"])){
             <a href="index.php?page=home" class="brand-link">
                 <img src="image_louis/11.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><b>Louis Repair</b></span>
-                <!-- <small><?= @$seclogin?></small> -->
+                <!-- <small><?= @$seclogin ?></small> -->
             </a>
 
             <!-- Sidebar -->
@@ -206,7 +206,7 @@ if(isset($_SESSION["settime"])){
                     <div class="info">
                         <a href="?page=home" class="d-block"><?= @$_SESSION['user_name'] ?> </a>
                         <a style="color:aliceblue"><?= @$_SESSION['pst_name'] ?></a><br>
-                       
+
                     </div>
                 </div>
 
@@ -221,15 +221,15 @@ if(isset($_SESSION["settime"])){
 
                         <!-- https://fontawesome.com/v4/icons/ -->
 
-<?php
-if(@$_SESSION["level_id"] == 1){
-    @$level1 = "style='display: none';";
-}
-if(@$_SESSION["level_id"] == 2){
-    @$level2 = "disabled";
-}
+                        <?php
+                        if (@$_SESSION["level_id"] == 1) {
+                            @$level1 = "style='display: none';";
+                        }
+                        if (@$_SESSION["level_id"] == 2) {
+                            @$level2 = "disabled";
+                        }
 
-?>
+                        ?>
                         <li class="nav-header">สำหรับคุณ</li>
                         <li class="nav-item">
 
@@ -244,7 +244,7 @@ if(@$_SESSION["level_id"] == 2){
                             </a>
                         </li>
 
-                        <li class="nav-item" <?=@$level1?>>
+                        <li class="nav-item" <?= @$level1 ?>>
 
                             <a href="index.php?page=rp_data" class="nav-link">
                                 <i class="fa fa-server nav-icon" aria-hidden="true"></i>
@@ -256,7 +256,7 @@ if(@$_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item" <?=@$level1?>>
+                        <!-- <li class="nav-item" <?= @$level1 ?>>
 
                             <a href="index.php?page=plan_maintenance&pm=pm_plan" class="nav-link">
                                 <i class="fa fa-handshake-o nav-icon" aria-hidden="true"></i>
@@ -268,7 +268,7 @@ if(@$_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li> -->
-                        <li class="nav-item" <?=@$level1?>>
+                        <li class="nav-item" <?= @$level1 ?>>
 
                             <a href="index.php?page=inventory" class="nav-link">
                                 <i class="fa fa-hdd-o nav-icon" aria-hidden="true"></i>
@@ -280,7 +280,7 @@ if(@$_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=@$level1?>>
+                        <li class="nav-item" <?= @$level1 ?>>
 
                             <a href="index.php?page=pm_report" class="nav-link">
                                 <i class="fa fa-bar-chart nav-icon" aria-hidden="true"></i>
@@ -292,7 +292,7 @@ if(@$_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                    <hr>    
+                        <hr>
                         <li class="nav-item">
 
                             <a href="index.php?page=repair" class="nav-link">
@@ -318,7 +318,7 @@ if(@$_SESSION["level_id"] == 2){
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=@$level1?>>
+                        <li class="nav-item" <?= @$level1 ?>>
                             <a href="#" class="nav-link">
                                 <i class="fa fa-cogs nav-icon"></i>
                                 <p>
@@ -331,6 +331,15 @@ if(@$_SESSION["level_id"] == 2){
                                     <a href="index.php?page=account" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ตั้งค่าบัญชีผู้ใช้ระบบ</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="index.php?page=manage_type_device" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>จัดการ</p>
                                     </a>
                                 </li>
 
@@ -403,7 +412,7 @@ if(@$_SESSION["level_id"] == 2){
 
         if (isset($_GET['page'])) {
 
-           @$page = $_GET['page'];
+            @$page = $_GET['page'];
         }
 
         if (is_file(@$page . ".php"))
@@ -436,7 +445,6 @@ if(@$_SESSION["level_id"] == 2){
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -470,9 +478,13 @@ if(@$_SESSION["level_id"] == 2){
     <!-- AdminLTE for demo purposes
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+
+
+
+    <script src="dist/js/pages/dashboard.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
