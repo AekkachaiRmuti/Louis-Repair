@@ -252,7 +252,18 @@ include './config/connect_db.php';
                             <div class="form-group">
                                 <label for="" class="label-control">Brance</label>
                                 <select name="" id="" class="form-control">
+
                                     <option value="">--เลือก--</option>
+                                    <?php
+                                    $brn_add = "SELECT * From tbl_brance";
+                                    $qr_add = mysqli_query($conn, $brn_add);
+                                    while($rs_add = mysqli_fetch_assoc($qr_add)){
+                                        ?>
+                                    <option name="<?= $rs_add['brn_id']?>" id=""><?= $rs_add['brn_name']?></option>
+                                        <?php
+                                    }
+                                    
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -147,7 +147,7 @@
                                         </div>
                                     </div> -->
 
-                                    <div class="col-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <p>สรุปสถานะงานซ่อม</p>
@@ -155,15 +155,15 @@
                                             <div class="card-body">
                                                 <?php
 
-                                                $sql_rp = "SELECT COUNT(rp_status) as rp_total, sts_name FROM `tbl_repair`
-LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY rp_status";
+                                                $sql_rp = "SELECT COUNT(rp_status) as rp_total, sts_name FROM `tbl_status`
+LEFT OUTER JOIN tbl_repair on tbl_status.sts_id = tbl_repair.rp_status GROUP BY rp_status";
                                                 $qr_rp = mysqli_query($conn, $sql_rp);
                                                 $dataPoints = array();
                                                 while ($rs_rp = mysqli_fetch_array($qr_rp)) {
                                                     array_push($dataPoints, array("label" => $rs_rp['sts_name'], "y" => $rs_rp['rp_total']));
                                                 }
 
-                                                $sql_type = "SELECT COUNT(rp_job) as count_type, type_name FROM `tbl_repair` LEFT OUTER JOIN tbl_typework_repair on tbl_typework_repair.type_id = tbl_repair.rp_type_repair GROUP by tbl_typework_repair.type_name;";
+                                                $sql_type = "SELECT COUNT(rp_job) as count_type, type_name FROM `tbl_typework_repair` LEFT OUTER JOIN tbl_repair on tbl_typework_repair.type_id = tbl_repair.rp_type_repair GROUP by tbl_typework_repair.type_name;";
                                                 $qr_type = mysqli_query($conn, $sql_type);
                                                 $dataPoints1 = array();
                                                 while ($rs_type = mysqli_fetch_array($qr_type)) {
@@ -171,7 +171,7 @@ LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY 
                                                     
                                                 }
                                                
-                                                $sql_donut = "SELECT COUNT(rp_job) as count_cate , cate_name , SUBSTRING(cate_name,22,30) as sub_txt FROM `tbl_repair` LEFT OUTER JOIN tbl_category on tbl_category.cate_id = tbl_repair.rp_name_inventory GROUP BY tbl_category.cate_name;";
+                                                $sql_donut = "SELECT COUNT(rp_job) as count_cate , cate_name , SUBSTRING(cate_name,22,30) as sub_txt FROM `tbl_category` LEFT OUTER JOIN tbl_repair on tbl_category.cate_id = tbl_repair.rp_name_inventory GROUP BY tbl_category.cate_name;";
                                                 $qr_donut = mysqli_query($conn, $sql_donut);
                                                 $donut = array();
                                                 while ($rs_donut = mysqli_fetch_array($qr_donut)) {
@@ -247,7 +247,7 @@ LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY 
                                         </div>
                                     </div>
 
-                                    <div class="col-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <p>สถิติการซ่อมตามประเภทงานซ่อม</p>
@@ -261,7 +261,7 @@ LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY 
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <p>สถิติการซ่อมแยกตามหมวดหมู่</p>

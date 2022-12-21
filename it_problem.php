@@ -66,7 +66,7 @@
                                                 <tbody>
 
                                                     <?php
-                                                    $servername = 'localhost';
+                                                    $servername = "localhost";
                                                     $username = 'root';
                                                     $password = '';
                                                     $db_name = 'louis_db';

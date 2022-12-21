@@ -1,236 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'connect_db.php' ?>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Test</title>
+    <style>
+.img img{
+    width: 100px;
+}
+    </style>
 </head>
 
 <body>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <a data-id="<?= $a = 3 ?>" class="open-AddBookDialog btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onclick="setval(3)">view</a>
-
-
-    <!-- ////////////////////////////// div modal รับค่า //////////////////////////////////// -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">รายละเอียด</h5>
-
-                </div>
-                <div class="modal-body">
-                    <a>ข้อมูลอุปกรณ์</a><br>
-                    <img src="<?= $rs_invt["add_picture"] ?>" width="50px">
-                    <hr>
-                    <table style="width: 100%;">
-                        <tr>
-                            <td><b>รหัสอุปกรณ์</b></td>
-                            <td><input type="text" id="value" class="form-control"></td>
-                            <td><b>ผู้ใช้งาน</b></td>
-                            <td>เอกชัย IT</td>
-                        </tr>
-                        <tr>
-                            <td><b>ซีเรียลนัมเบอร์</b></td>
-                            <td>NHGHYY7765554</td>
-                            <td><b>วันเริ่มใช้งาน</b></td>
-                            <td>20-12-2022</td>
-                        </tr>
-                        <tr>
-                            <td><b>ชื่ออุปกรณ์</b></td>
-                            <td>LKJDHS***&&93837</td>
-                            <td><b>อายุการใช้งานที่ผ่านมา</b></td>
-                            <td>เอกชัย IT</td>
-                        </tr>
-                        <tr>
-                            <td><b>หมวดหมู่อุปกรณ์</b></td>
-                            <td>LKJDHS***&&93837</td>
-                            <td><b>ราคา</b></td>
-                            <td>เอกชัย IT</td>
-                        </tr>
-                        <tr>
-                            <td><b>หน่วยงาน/แผนก</b></td>
-                            <td>LKJDHS***&&93837</td>
-                            <td><b>สถานะอุปกรณ์</b></td>
-                            <td>เอกชัย IT</td>
-                        </tr>
-                        <tr>
-                            <td><b>สถานที่ติดตั้ง</b></td>
-                            <td>LKJDHS***&&93837</td>
-                            <td><b>รายละเอียดเพิ่มเติม</b></td>
-                            <td>เอกชัย IT</td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <p>ข้อมูลประกัน</p>
-                    <table style="width: 50%;">
-                        <tr>
-                            <td><b>ผู้ผลิต/จำหน่าย</b></td>
-                            <td style="text-align: left;">HP</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>การรับประกัน</b></td>
-                            <td style="text-align: left;">3</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>วันหมดประกัน</b></td>
-                            <td style="text-align: left;">17-12-2022</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <p>ประวัติการซ่อม</p>
-                    <table class="table table-striped table-bordered detail-view" id="example1">
-                        <thead>
-                            <tr>
-                                <th>วันที่แจ้งซ่อม</th>
-                                <th>ชื่อผู้แจ้งซ่อม</th>
-                                <th>ประเภทงานซ่อม</th>
-                                <th>ปัญหา/งานซ่อม</th>
-                                <th>สาเหตุ/วิธีแก้ไข</th>
-                                <th>ผู้ดำเนินงาน</th>
-                                <th>วิธีแก้ไข</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Ticket ID: 202255363<br> <?= date("Y-m-d H:m:s") ?></td>
-                                <td>ชื่อผู้แจ้ง : เอกชัย นามวิชา <br><i>Information technology</i> <br> ความเร่งด่วน : ด่วน</td>
-                                <td>ประเภทงานซ่อม : ซ่อมบำรุง <br> ประเภทปัญหา : เครื่องไม่ติด</td>
-                                <td>ปัญหา/งานซ่อม : เร่งไฟไม่ขึ้น</td>
-                                <td>สาเหตุ/วิธีแก้ไข : เปลี่ยน PSU <br> <i>วันที่สำเร็จ <?= date("Y-m-d H:m:s") ?></i></td>
-                                <td>ผู้ดำเนินการ : Aekkachai <br> <i>Cheif Design Engineer</i></td>
-                                <td>สำเร็จ</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <hr>
-                    <?php
-                    $sql_rp = "SELECT COUNT(rp_status) as rp_total, sts_name FROM `tbl_repair`
-                 LEFT OUTER JOIN tbl_status on tbl_status.sts_id = tbl_repair.rp_status GROUP BY rp_status";
-                    $qr_rp = mysqli_query($conn, $sql_rp);
-                    $dataPoints = array();
-                    while ($rs_rp = mysqli_fetch_array($qr_rp)) {
-                        array_push($dataPoints, array("label" => $rs_rp['sts_name'], "y" => $rs_rp['rp_total']));
-                    }
-                    ?>
-                    <p>สรุปค่าใช้จ่าย</p>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="chartContainer" style="height: 370px; width: 100%;" class="chartone"></div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        window.onload = function() {
-
-                            var chart = new CanvasJS.Chart("chartContainer", {
-                                animationEnabled: true,
-                                exportEnabled: true,
-                                title: {
-                                    text: "สรุปค่าซ่อม"
-                                },
-                                subtitles: [{
-                                    text: "Currency Used: Thai Baht (฿)"
-                                }],
-                                data: [{
-                                    type: "pie",
-                                    showInLegend: "true",
-                                    legendText: "{label}",
-                                    indexLabelFontSize: 16,
-                                    indexLabel: "{label} - #percent%",
-                                    yValueFormatString: "฿#,##0",
-                                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                                }]
-                            });
-                            chart.render();
-
-                        }
-                    </script>
-                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-                    <br>
-                    <br>
-                    <table style="width: 50%;">
-                        <thead>
-                            <tr>
-                                <th>ประเภทค่าใช้จ่าย</th>
-                                <th>ค่าใช้จ่าย</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($dataPoints as $label => $value) {
-                                $total += $value['y'];
-                            ?>
-                                <tr>
-                                    <td><?= $value['label'] ?></td>
-                                    <td><?= number_format($value['y'], 2) . "  บาท" ?></td>
-                                </tr>
-
-                            <?php
-                            }
-                            ?>
-                            <tr>
-                                <td><b>สรุปค่าใช้จ่ายการซ่อม</b></td>
-                                <td><b><?= number_format($total, 2) . "  บาท" ?></b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <div class="img"><Img src="data:image/png;base64,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"></Img></div>
+        <div></div>
+        <div></div>
     </div>
-    <script>
-        function setval(value) {
-            console.log(value);
-            $('#myModal').modal('show'); //เผื่อ modal ไม่ขึ้นนะครับ
-            var req = $.ajax({
-                url: "server.php", //หน้าที่จะโพสต์ไป
-                type: "GET",
-                data: "id=" + value
-            });
-           
-            req.success(function(result) {
-                var obj = jQuery.parseJSON(result);
-                console.log(obj[9]);
-                console.log(obj[9]);
-
-                setTimeout(function() {
-                    document.getElementById("value").value = obj[9];
-                }, 200); // setTimeout เพราะว่าเผื่อเวลาที่ใช้ในการเปิด modal ครับ
-                // $.each(obj, function(key, val) {
-                //     setTimeout(function() {
-                //         document.getElementById("value").value = val['add_name'];
-
-                //         // val['value'] value คือ = ชื่อ fields
-                //     }, 200); // setTimeout เพราะว่าเผื่อเวลาที่ใช้ในการเปิด modal ครับ
-                // });
-            });
-        }
-    </script>
-
-
 </body>
 
 </html>
