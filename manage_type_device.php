@@ -64,7 +64,7 @@
                                                                     <input name="total_t" type="text" value="<?= $i ?>">
                                                                     <input name="id_type<?= $i ?>" type="text" value="<?= $rs_type_repair['type_id'] ?>">
                                                                 </div>
-                                                                <button type="submit" name="btn_tw" class="btn btn-danger">ลบ</button>
+                                                                <button type="submit" name="btn_tw<?=$i?>" class="btn btn-danger btn-sm">ลบ</button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -117,7 +117,7 @@
                                                                     <input name="total" type="text" value="<?= $ai ?>">
                                                                     <input name="id_device<?= $ai ?>" type="text" value="<?= $rs_type_repair1['cate_id'] ?>">
                                                                 </div>
-                                                                <button type="submit" name="del_device<?= $ai ?>" class="btn btn-danger">ลบ</button>
+                                                                <button type="submit" name="del_device<?= $ai ?>" class="btn btn-danger btn-sm">ลบ</button>
                                                             </div>
                                                         </td>
                                                     </tr>

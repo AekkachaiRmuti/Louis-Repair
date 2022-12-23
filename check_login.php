@@ -18,12 +18,12 @@ if (isset($_POST['btn_login'])) {
     LEFT OUTER JOIN tbl_department on tbl_department.dept_id = tbl_user.user_dept
     LEFT OUTER JOIN tbl_position on tbl_position.pst_id = tbl_user.user_position WHERE user_user ='$user' AND user_pw ='$pass'";
     $qr_ck = mysqli_query($conn, $sql_ck);
+    $louis = "REPAIR";
 
-
-    if (mysqli_num_rows($qr_ck) == 1) {
+    if (mysqli_num_rows($qr_ck) == 1 and $louis = "REPAIR") {
         $rs = mysqli_fetch_object($qr_ck);
 
-
+        $_SESSION['web'] = $louis;
         $_SESSION['user_id'] =  $rs->user_id;
         $_SESSION['user_name'] =  $rs->user_name;
         $_SESSION['user_user'] =  $rs->user_user;

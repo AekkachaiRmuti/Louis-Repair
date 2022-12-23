@@ -15,16 +15,17 @@ if ($_SESSION['user_name'] == '') {
     echo "<script> window.location.href ='login.php';</script>";
 }
 
+if ($_SESSION['web'] != "REPAIR") {
+    echo "<script> window.location.href ='login.php';</script>";
+}
+
 ?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Louis Adhesive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Mitr:wght@200;400&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
@@ -88,10 +89,10 @@ if ($_SESSION['user_name'] == '') {
 
 </head>
 <style>
-    /* * {
+    * {
         font-family: 'Kanit', sans-serif;
-        font-family: 'Mitr', sans-serif;
-    } */
+      
+    }
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -157,7 +158,7 @@ if ($_SESSION['user_name'] == '') {
                     <a href="?page=home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="?page=file" class="nav-link">File</a>
+                    <a href="?page=file" class="nav-link"><?=  $_SESSION['user_key']?></a>
                 </li>
             </ul>
 
@@ -204,7 +205,7 @@ if ($_SESSION['user_name'] == '') {
                         <img src="img/programmer.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="?page=home" class="d-block"><?= @$_SESSION['user_name'] ?> </a>
+                        <a href="?page=myProfile" class="d-block"><?= @$_SESSION['user_name'] ?> </a>
                         <a style="color:aliceblue"><?= @$_SESSION['pst_name'] ?></a><br>
 
                     </div>
@@ -354,7 +355,7 @@ if ($_SESSION['user_name'] == '') {
 
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-laptop nav-icon"></i>
                                 <p>
@@ -384,7 +385,7 @@ if ($_SESSION['user_name'] == '') {
 
 
                             </ul>
-                        </li>
+                        </li> -->
 
 
 

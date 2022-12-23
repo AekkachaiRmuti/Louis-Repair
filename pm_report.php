@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-info">
-                                            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+                                            <span class="info-box-icon"><i class="fa fa-bar-chart"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ข้อมูลการทำงาน</span>
@@ -83,7 +83,7 @@
 
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-danger">
-                                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                                            <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">สถิติการซ่อมบำรุง</span>
@@ -101,8 +101,8 @@
                                     </div>
 
                                     <div class="col-md-4 col-sm-6 col-12">
-                                        <div class="info-box bg-warning">
-                                            <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+                                        <div class="info-box bg-yellow">
+                                            <span class="info-box-icon"><i class="fa fa-money"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">ค่าซ่อมบำรุง</span>
@@ -119,7 +119,7 @@
 
                                     </div>
 
-                                    <div class="col-md-4 col-sm-6 col-12">
+                                    <!-- <div class="col-md-4 col-sm-6 col-12">
                                         <div class="info-box bg-danger">
                                             <span class="info-box-icon"><i class="fas fa-comments"></i></span>
                                             <div class="info-box-content">
@@ -136,11 +136,11 @@
 
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-4 col-sm-6 col-12">
-                                        <div class="info-box bg-danger">
-                                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                                        <div class="info-box bg-pink">
+                                            <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">รายงาน</span>
                                                 <span class="info-box-number">การแจ้งปัญหา IT Support</span>

@@ -29,7 +29,7 @@ include './config/connect_db.php';
         <div class="container">
             <div class="container-fluid">
                 <div class="card card-default ">
-                    <div class="row">
+                    <div class="">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card-header">
                                 <h3>แจ้งปัญหา / งานซ่อม</h3>
@@ -37,11 +37,11 @@ include './config/connect_db.php';
                             <div class="card-body">
                                 <form method="POST" enctype="multipart/form-data">
 
-                                    <div class="">
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                    <div class="row">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
 
-                                                <label for="" class="control-label">ประเภทงานซ่อม</label>
+                                                <label for="" class="control-label mt-3">ประเภทงานซ่อม</label>
 
                                                 <select id="type" class="form-control" name="type_work">
                                                     <option value="">-เลือกประเภทงานซ่อม-</option>
@@ -61,16 +61,16 @@ include './config/connect_db.php';
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="problem" class="control-label">ประเภทปัญหา</label>
+                                                <label for="problem" class="control-label mt-3">ประเภทปัญหา</label>
                                                 <input type="text" class="form-control" name="problem">
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="invt" class="control-label">ชื่ออุปกรณ์</label>
+                                                <label for="invt" class="control-label mt-3">ชื่ออุปกรณ์</label>
                                                 <select id="" class="form-control" name="invt_name">
                                                     <option value="">-ชื่ออุปกรณ์-</option>
                                                     <?php
@@ -86,9 +86,9 @@ include './config/connect_db.php';
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="urgency" class="control-label">ความเร่งด่วน</label>
+                                                <label for="urgency" class="control-label mt-3">ความเร่งด่วน</label>
                                                 <select id="" class="form-control" name="urgency">
                                                     <option value="">-ความเร่งด่วน-</option>
                                                     <?php
@@ -104,24 +104,59 @@ include './config/connect_db.php';
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="problem_work" class="control-label">ปัญหา/งานซ่อม</label>
+                                                <label for="problem_work" class="control-label mt-3">ปัญหา/งานซ่อม</label>
                                                 <textarea id="" class="form-control" name="problem_work"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="pic" class="control-label">ไฟล์แนบ</label>
+                                                <label for="pic" class="control-label mt-3">ไฟล์แนบ</label>
                                                 <input type="file" class="form-control" name="fileupload" id="fileupload" accept="image/gif, image/jpeg, image/png">
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-12 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
                                                 <br>
                                                 <button type="submit" class="btn btn-primary" id="btn_ok" name="btn_ok">แจ้งซ่อม</button>
                                             </div>
+
+                                        </div>
+
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-5">
+                                           <table class="table">
+                                            <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>เลขที่แจ้ง</th>
+                                                    <th>วันที่แจ้ง</th>
+                                                    <th>ผู้แจ้ง</th>
+                                                    <th>ชื่ออุปกรณ์</th>
+                                                    <th>รายละเอียดปัญหา</th>
+                                                    <th>สถานะ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql_dt = "SELECT * FROM tbl_repair left outer join tbl_category on tbl_category.cate_id = tbl_repair.rp_name_inventory
+                                                left outer join tbl_status on tbl_status.sts_id = tbl_repair.rp_status WHERE rp_user_key = '{$_SESSION['user_id']}'";
+                                                $qr_dt = mysqli_query($conn, $sql_dt);
+                                                while($rs_dt = mysqli_fetch_assoc($qr_dt)){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $rs_dt['rp_job']?></td>
+                                                        <td><?= $rs_dt['rp_date_repair']?></td>
+                                                        <td><?= $rs_dt['rp_name']?></td>
+                                                        <td><?= $rs_dt['cate_name']?></td>
+                                                        <td><?= $rs_dt['rp_problem']?></td>
+                                                        <td><?= $rs_dt['sts_name']?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                           </table>
 
                                         </div>
                                     </div>
@@ -184,7 +219,7 @@ include './config/connect_db.php';
                                             $newname = $jod_id . basename($newname);
                                             $path_copy = $path . $newname;
                                             $path_link = $path . $newname;
-                                            echo basename($newname);
+                                             basename($newname);
                                             //คัดลอกไฟล์ไปเก็บที่เว็บเซริ์ฟเวอร์
 
                                             move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);

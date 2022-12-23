@@ -250,7 +250,7 @@ include './config/connect_db.php';
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="" class="label-control">Brance</label>
+                                <label for="" class="label-control">Branch</label>
                                 <select name="" id="" class="form-control">
 
                                     <option value="">--เลือก--</option>
