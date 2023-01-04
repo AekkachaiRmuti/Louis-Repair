@@ -28,8 +28,7 @@ include './config/connect_db.php';
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card-header">
                                 <b>เพิ่มผู้ใช้งาน</b>
-                                <button type="button" class="btn btn-warning" data-toggle="modal"
-                                    data-target=".bd-example-modal-lg">เพิ่มข้อมูล แผนก/สาขา</button>
+                                <button type="button" class="btn btn-warning btn-sm m-3" data-toggle="modal" data-target=".bd-example-modal-lg">เพิ่มข้อมูล แผนก/สาขา</button>
 
                             </div>
                             <div class="card-body">
@@ -37,14 +36,11 @@ include './config/connect_db.php';
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12 col-sm-12">
                                             <label for="" class="label-control">Full Name</label>
-                                            <input type="text" name="fullname" class="form-control"
-                                                placeholder="Full Name" required>
+                                            <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
                                             <label for="" class="label-control">User Name</label>
-                                            <input type="text" name="username" class="form-control"
-                                                placeholder="User Name" required>
+                                            <input type="text" name="username" class="form-control" placeholder="User Name" required>
                                             <label for="" class="label-control">Password</label>
-                                            <input type="password" name="pw" class="form-control" placeholder="Password"
-                                                required>
+                                            <input type="password" name="pw" class="form-control" placeholder="Password" required>
                                             <label for="" class="label-control">User Level</label>
                                             <select name="us_level" id="" class="form-control" required>
                                                 <option value="">-Select-</option>
@@ -53,8 +49,8 @@ include './config/connect_db.php';
                                                 $qr_level = mysqli_query($conn, $sql_level);
                                                 while ($rs_level = mysqli_fetch_array($qr_level)) {
                                                 ?>
-                                                <option value="<?= $rs_level["level_id"] ?>">
-                                                    <?= $rs_level["level_name"] ?></option>
+                                                    <option value="<?= $rs_level["level_id"] ?>">
+                                                        <?= $rs_level["level_name"] ?></option>
                                                 <?php
                                                 }
                                                 ?>
@@ -64,23 +60,21 @@ include './config/connect_db.php';
                                         <div class="col-lg-6 col-md-12 col-sm-12">
 
                                             <label for="brn" class="label-control">Brance</label>
-                                            <select name="brance" id="brance" class="form-control" onchange="get_brn()"
-                                                required>
+                                            <select name="brance" id="brance" class="form-control" onchange="get_brn()" required>
                                                 <option value="">-Select-</option>
                                                 <?php
                                                 $sql_brn = "SELECT * FROM `tbl_brance`";
                                                 $qr_brn = mysqli_query($conn, $sql_brn);
                                                 while ($rs_brn = mysqli_fetch_array($qr_brn)) {
                                                 ?>
-                                                <option value="<?= $rs_brn["brn_id"] ?>"><?= $rs_brn["brn_name"] ?>
-                                                </option>
+                                                    <option value="<?= $rs_brn["brn_id"] ?>"><?= $rs_brn["brn_name"] ?>
+                                                    </option>
                                                 <?php
                                                 }
                                                 ?>
                                             </select>
                                             <label for="" class="label-control">Department</label>
-                                            <select name="dept" id="dept" class="form-control" onchange="get_dept()"
-                                                required>
+                                            <select name="dept" id="dept" class="form-control" onchange="get_dept()" required>
                                                 <option value="">-Select-</option>
 
                                             </select>
@@ -91,39 +85,38 @@ include './config/connect_db.php';
 
                                             </select>
                                             <label for="" class="label-control" style="display: none ;">Save</label><br>
-                                            <button class="btn btn-primary mt-2" type="submit"
-                                                name="save_ac">Save</button>
+                                            <button class="btn btn-primary mt-2" type="submit" name="save_ac">Save</button>
 
                                             <script>
-                                            function get_brn() {
-                                                let id_brance = document.getElementById("brance").value;
-                                                console.log(id_brance);
+                                                function get_brn() {
+                                                    let id_brance = document.getElementById("brance").value;
+                                                    console.log(id_brance);
 
-                                                $.ajax({
-                                                    url: 'ajax/ajax_data.php?brn=' + id_brance,
-                                                    type: 'get',
-                                                    success: function(result) {
-                                                        $('#dept').html(result);
-                                                        console.log("Get DATA Successfully");
-                                                    }
-                                                });
-                                            }
+                                                    $.ajax({
+                                                        url: 'ajax/ajax_data.php?brn=' + id_brance,
+                                                        type: 'get',
+                                                        success: function(result) {
+                                                            $('#dept').html(result);
+                                                            console.log("Get DATA Successfully");
+                                                        }
+                                                    });
+                                                }
 
-                                            function get_dept() {
-                                                // $(document).ready(function() {
-                                                // function get_brn() {
-                                                let id_dept = document.getElementById("dept").value;
-                                                console.log(id_dept);
+                                                function get_dept() {
+                                                    // $(document).ready(function() {
+                                                    // function get_brn() {
+                                                    let id_dept = document.getElementById("dept").value;
+                                                    console.log(id_dept);
 
-                                                $.ajax({
-                                                    url: 'ajax/ajax_data.php?dept=' + id_dept,
-                                                    type: 'get',
-                                                    success: function(result) {
-                                                        $('#pst').html(result);
-                                                        console.log("Get DATA Successfully");
-                                                    }
-                                                });
-                                            }
+                                                    $.ajax({
+                                                        url: 'ajax/ajax_data.php?dept=' + id_dept,
+                                                        type: 'get',
+                                                        success: function(result) {
+                                                            $('#pst').html(result);
+                                                            console.log("Get DATA Successfully");
+                                                        }
+                                                    });
+                                                }
                                             </script>
                                         </div>
                                         <?php
@@ -134,14 +127,14 @@ include './config/connect_db.php';
 
                                             if ($qr_save) {
                                                 echo "<script>swal({
-                                                    title: 'เพิ่มผู้ใช้งานสำเร็จ!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                            //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                    type: 'success', //success, warning, danger
-                                                    timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                    showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                }, function(){
-                                                    window.location.href ='index.php?page=account'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                    })</script>";
+                                                    title: 'เพิ่มผู้ใช้งานสำเร็จ',
+                                                    // text: 'สำหรับ Administrator!',
+                                                    icon: 'success',
+                                                    time: 30000,
+                                                   
+                                                  }),setTimeout(() => {
+                                                    window.location.href = 'index.php?page=account';
+                                                  }, 3000);</script>";
                                             }
                                         }
                                         ?>
@@ -172,50 +165,50 @@ include './config/connect_db.php';
                                                     $qr_ck = mysqli_query($conn, $sql_ck);
                                                     while ($rs_acc = mysqli_fetch_assoc($qr_ck)) {
                                                     ?>
-                                                    <tr>
-                                                        <td><?= $i ?></td>
-                                                        <td><?= $rs_acc["user_name"] ?></td>
-                                                        <td><?= $rs_acc["user_user"] ?></td>
-                                                        <td><input type="password" value="<?= $rs_acc["user_pw"] ?>"
-                                                                class="form-control" id="myInput<?=$i?>">
-                                                            <input type="checkbox" onclick="myFunction<?=$i?>()">Show
-                                                            Password
-                                                        </td>
-                                                        <script>
-                                                        function myFunction<?=$i?>() {
-                                                            var x = document.getElementById("myInput<?=$i?>");
-                                                            if (x.type === "password") {
-                                                                x.type = "text";
-                                                            } else {
-                                                                x.type = "password";
-                                                            }
-                                                        }
-                                                        </script>
+                                                        <tr>
+                                                            <td><?= $i ?></td>
+                                                            <td><?= $rs_acc["user_name"] ?></td>
+                                                            <td><?= $rs_acc["user_user"] ?></td>
+                                                            <td><input type="password" value="<?= $rs_acc["user_pw"] ?>" class="form-control" id="myInput<?= $i ?>">
+                                                                <input type="checkbox" onclick="myFunction<?= $i ?>()">Show
+                                                                Password
+                                                            </td>
+                                                            <script>
+                                                                function myFunction<?= $i ?>() {
+                                                                    var x = document.getElementById("myInput<?= $i ?>");
+                                                                    if (x.type === "password") {
+                                                                        x.type = "text";
+                                                                    } else {
+                                                                        x.type = "password";
+                                                                    }
+                                                                }
+                                                            </script>
 
-                                                        <td><?= $rs_acc["brn_name"] ?></td>
-                                                        <td><?= $rs_acc["dept_name"] ?></td>
-                                                        <td><?= $rs_acc["pst_name"] ?></td>
-                                                        <td><?= $rs_acc["level_name"] ?></td>
-                                                        <td><a href="?page=account&del=<?= $rs_acc["user_id"]?>"
-                                                                class="btn btn-danger">ลบผู้ใช้</a></td>
-                                                    </tr>
+                                                            <td><?= $rs_acc["brn_name"] ?></td>
+                                                            <td><?= $rs_acc["dept_name"] ?></td>
+                                                            <td><?= $rs_acc["pst_name"] ?></td>
+                                                            <td><?= $rs_acc["level_name"] ?></td>
+                                                            <td><a href="?page=account&del=<?= $rs_acc["user_id"] ?>" class="btn btn-danger">ลบผู้ใช้</a></td>
+                                                        </tr>
                                                     <?php
                                                         $i++;
                                                     }
 
-                                                    if(@$_GET['del']){
+                                                    if (@$_GET['del']) {
                                                         $sql_del = "DELETE FROM tbl_user WHERE user_id = '{$_GET['del']}'";
-                                                        $qr_del =mysqli_query($conn, $sql_del);
-                                                        if($qr_del){
-                                                            echo "<script>swal({
-                                                                title: 'ลบผู้ใช้งานสำเร็จ!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                                        //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                                type: 'success', //success, warning, danger
-                                                                timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                                showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                            }, function(){
-                                                                window.location.href ='index.php?page=account'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                                })</script>";
+                                                        $qr_del = mysqli_query($conn, $sql_del);
+                                                        if ($qr_del) {
+                                                            
+                                                                echo "<script>swal({
+                                                                    title: 'ลบผู้ใช้งานเรียบร้อย',
+                                                                    // text: 'สำหรับ Administrator!',
+                                                                    icon: 'success',
+                                                                    time: 30000,
+                                                                   
+                                                                  }),setTimeout(() => {
+                                                                    window.location.href = 'index.php?page=account';
+                                                                  }, 3000);</script>";
+                                                            
                                                         }
                                                     }
                                                     ?>
@@ -238,49 +231,106 @@ include './config/connect_db.php';
     </div>
 </div>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="">
                 <div class="">
-                    <div class="card">
+                    <div class="">
+
                         <div class="card-header">
                             <h3>เพิ่มข้อมูล แผนก/สาขา</h3>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="" class="label-control">Branch</label>
-                                <select name="" id="" class="form-control">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <label for="" class="label-control">Branch</label>
+                                    <select name="new_branch" id="new_branch" onchange="getnew()" class="form-control">
 
-                                    <option value="">--เลือก--</option>
-                                    <?php
-                                    $brn_add = "SELECT * From tbl_brance";
-                                    $qr_add = mysqli_query($conn, $brn_add);
-                                    while($rs_add = mysqli_fetch_assoc($qr_add)){
-                                        ?>
-                                    <option name="<?= $rs_add['brn_id']?>" id=""><?= $rs_add['brn_name']?></option>
+                                        <option value="">--เลือก--</option>
                                         <?php
-                                    }
-                                    
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="label-control">Department</label>
-                                <select name="" id="" class="form-control">
-                                    <option value="">--เลือก--</option>
-                                </select>
-                                <input type="text" name="dept_name" class="form-control" placeholder="add Department">
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="label-control">Position</label>
-                                <select name="" id="" class="form-control">
-                                    <option value="">--เลือก--</option>
-                                </select>
-                                <input type="text" name="dept_name" class="form-control" placeholder="add Position">
+                                        $brn_add = "SELECT * From tbl_brance";
+                                        $qr_add = mysqli_query($conn, $brn_add);
+                                        while ($rs_add = mysqli_fetch_assoc($qr_add)) {
+                                        ?>
+                                            <option value="<?= $rs_add['brn_id'] ?>"><?= $rs_add['brn_name'] ?></option>
+                                        <?php
+                                        }
 
-                            </div>
+                                        ?>
+                                    </select>
+                                    <script>
+                                        function getnew(){
+                                            let id_brn = document.getElementById("new_branch").value;
+                                            console.log(id_brn);
+                                            $.ajax({
+                                                        url: 'ajax/ajax_data.php?brn_new=' + id_brn,
+                                                        type: 'get',
+                                                        success: function(result) {
+                                                            $('#dept_add').html(result);
+                                                            
+                                                        }
+                                                    });
+                                        }
+                                    </script>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="label-control">Department</label>
+
+                                    <input type="text" name="new_dept" class="form-control mt-1" placeholder="add Department">
+                                </div>
+                                <div class="form-group">
+                                    <button name="add_dept" type="submit" class="btn btn-outline-primary">Add Department </button>
+                                </div>
+                                <div id="dept_add"></div>
+                                <div class="form-group">
+                                    <label for="" class="label-control">Position</label>
+
+                                    <input type="text" name="new_position" class="form-control mt-1" placeholder="add Position">
+
+                                </div>
+                                <div class="form-group">
+                                    <button name="add_new" type="submit" class="btn btn-outline-primary">Add Position </button>
+                                </div>
+                                <?php
+                                if (isset($_POST['add_new'])) {
+                                   
+                                    $dept_new = $_POST['deptnew'];
+                                    $position_new = $_POST['new_position'];
+                                    $sql_add_dept1 = "INSERT INTO tbl_position (pst_name, pst_department) VALUES ('$position_new','$dept_new')";
+                                    $qr_add_dept1 = mysqli_query($conn, $sql_add_dept1);
+                                    if($qr_add_dept1){
+                                        echo "<script>swal({
+                                            title: 'Add Position Successfully!',
+                                            // text: 'สำหรับ Administrator!',
+                                            icon: 'success',
+                                            time: 30000,
+                                           
+                                          }),setTimeout(() => {
+                                            window.location.href = 'index.php?page=account';
+                                          }, 3000);</script>";
+                                    }
+                                }
+                                if (isset($_POST['add_dept'])) {
+                                    $brn_new = $_POST['new_branch'];
+                                    $dept_new = $_POST['new_dept'];
+                                    $sql_add_dept = "INSERT INTO tbl_department (dept_name, dept_brance) VALUES ('$dept_new','$brn_new')";
+                                    $qr_add_dept = mysqli_query($conn, $sql_add_dept);
+                                    if($qr_add_dept){
+                                        echo "<script>swal({
+                                            title: 'Add Department Successfully!',
+                                            // text: 'สำหรับ Administrator!',
+                                            icon: 'success',
+                                            time: 30000,
+                                           
+                                          }),setTimeout(() => {
+                                            window.location.href = 'index.php?page=account';
+                                          }, 3000);</script>";
+                                    }
+                                }
+                                ?>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -290,14 +340,14 @@ include './config/connect_db.php';
 </div>
 
 <script>
-$(document).ready(function() {
-    $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+    $(document).ready(function() {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
     });
-});
 </script>
 
 

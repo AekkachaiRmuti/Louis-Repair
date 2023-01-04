@@ -119,15 +119,14 @@
     `add_productby`='{$_POST['add_productby']}',`add_varanty`='{$_POST['add_varanty']}',`add_varanty_expire`='{$_POST['add_varanty_expire']}' WHERE add_id ='{$_GET['id']}'";
                                         $qr_update = mysqli_query($conn, $sql_update);
                                         if ($qr_update) {
-                                            echo "<script>swal({
-            title: 'แก้ไขอุปกรณ์เรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-    //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-            type: 'success', //success, warning, danger
-            timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-            showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-        }, function(){
-            window.location.href ='index.php?page=inventory'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-            })</script>";
+               
+            echo "<script>swal({
+                title: 'แก้ไขอุปกรณ์เรียบร้อย!',
+                // text: 'สำหรับ Administrator!',
+                icon: 'success',
+              }),setTimeout(() => {
+                window.location.href = 'index.php?page=inventory';
+              }, 3000);</script>";
                                         }
                                     }
 
@@ -202,8 +201,13 @@
                                         '{$_POST['add_productby']}','{$_POST['add_varanty']}','{$_POST['add_varanty_expire']}','$path_link')";
                                         $qr_inventory = mysqli_query($conn, $sql_inventory);
                                         if ($qr_inventory) {
-                                            echo "<script>swal('เพิ่มอุปกรณ์เรียบร้อย', 'เพิ่มอุปกรณ์เรียบร้อย!', 'success');window.location.href='index.php?page=inventory';</script>";
-
+                                            echo "<script>swal({
+                                                title: 'เพิ่มอุปกรณ์เรียบร้อย!',
+                                                // text: 'สำหรับ Administrator!',
+                                                icon: 'success',
+                                              }),setTimeout(() => {
+                                                window.location.href = 'index.php?page=inventory';
+                                              }, 3000);</script>";
                                         }
                                     }
                                     ?>

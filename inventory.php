@@ -164,6 +164,10 @@
                                                  
                                                 } else {
                                                   swal('คุณไม่ต้องการลบ!');
+                                                  setTimeout(() => {
+                                                    window.location.href = 'index.php?page=inventory';
+                                                  }, 1000);
+                                                 
                                                 }
                                               });
                                               
@@ -173,7 +177,13 @@
                                             $sql_del = "DELETE FROM `tbl_add_inventory` WHERE `add_id` ='{$_GET['delete_id']}'";
                                             $qr_del = mysqli_query($conn, $sql_del);
                                             if($qr_del){
-                                                echo "<script>swal('ลบอุปกรณ์เรียบร้อย', 'ลบอุปกรณ์เรียบร้อย!', 'success');window.location.href='index.php?page=inventory';</script>";
+                                                echo "<script>swal({
+                                                    title: 'ลบอุปกรณ์เรียบร้อย!',
+                                                    // text: 'สำหรับ Administrator!',
+                                                    icon: 'success',
+                                                  }),setTimeout(() => {
+                                                    window.location.href = 'index.php?page=inventory';
+                                                  }, 3000);</script>";
                                             }
                                         }
                                         ?>

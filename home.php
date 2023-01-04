@@ -42,7 +42,7 @@
                                                 <i class="ion ion-settings"></i>
                                                 <!-- <i class="ion ion-bag"></i> -->
                                             </div>
-                                            <a href="index.php?page=inventory" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="index.php?page=detail_repair&sts=1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                     <!-- ./col -->
@@ -63,7 +63,7 @@
                                             <div class="icon">
                                                 <i class="ion ion-checkmark-circled"></i>
                                             </div>
-                                            <a href="index.php?page=inventory&repair=equipment" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="index.php?page=detail_repair&sts=2" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                     <!-- ./col -->
@@ -84,7 +84,7 @@
                                             <div class="icon">
                                                 <i class="ion ion-clipboard"></i>
                                             </div>
-                                            <a href="index.php?page=inventory&repair=equipment" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="index.php?page=detail_repair&sts=3" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
 
@@ -106,7 +106,7 @@
                                             <div class="icon">
                                                 <i class="ion ion-medkit"></i>
                                             </div>
-                                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="index.php?page=detail_repair&sts=4" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                     <!-- ./col -->

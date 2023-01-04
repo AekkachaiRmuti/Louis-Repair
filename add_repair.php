@@ -6,6 +6,19 @@ $id = $_GET['louis'];
 $sql_rp = "SELECT * FROM `tbl_repair` LEFT OUTER JOIN tbl_urgency ON tbl_urgency.ug_id = tbl_repair.rp_urgency LEFT OUTER JOIN tbl_typework_repair ON tbl_typework_repair.type_id = tbl_repair.rp_type_repair LEFT OUTER JOIN tbl_category ON tbl_category.cate_id = tbl_repair.rp_name_inventory LEFT OUTER JOIN tbl_status ON tbl_status.sts_id = tbl_repair.rp_status WHERE rp_id = '$id'";
 $qr_rp = mysqli_query($conn, $sql_rp);
 $rs_rp = mysqli_fetch_assoc($qr_rp);
+
+if($_SESSION['user_level'] == '1'){
+    echo "<script>swal({
+        title: 'คุณไม่มีสิทธิ์เข้าถึง!',
+        text: 'สำหรับ Administrator!',
+        icon: 'error',
+        time: 30000,
+       
+      }),setTimeout(() => {
+        window.location.href = 'index.php?page=home';
+      }, 3000);</script>";
+
+}
 ?>
 <style type="text/css">
     div.img-resize img {
@@ -26,7 +39,7 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>แจ้งซ่อม</h1>
+                        <h1>แจ้งซ่อม <?= $_SESSION['user_level']?></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -65,10 +78,11 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                     <label for="">ปัญหา/งานซ่อม</label>
                                     <input type="text" value="<?= $rs_rp['rp_problem'] ?>" class="form-control" disabled>
                                     <label for="">ไฟล์แนบ</label><br>
-                                    <div class="img-resize">
-                                        <img src="<?= $rs_rp['rp_picture'] ?>" alt="">
-                                    </div>
-
+                                   
+                                    <div >
+                                        <img class="card-img-top" src="<?= $rs_rp['rp_picture'] ?>" alt="Card image cap">
+                                        </div>
+                                     
                                 </div>
                             </div>
                         </div>
@@ -148,15 +162,13 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                             $qr_sc = mysqli_query($conn, $sql_sc);
 
                                             if($qr_sc){
-                                              echo "<script>swal({
-                                                  title: 'การซ่อมสำเร็จ!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                          //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                  type: 'success', //success, warning, danger
-                                                  timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                  showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                              }, function(){
-                                                  window.location.href ='index.php?page=rp_data'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                  })</script>";
+                                                  echo "<script>swal({
+                                                    title: 'การซ่อมสำเร็จ!',
+                                                    // text: 'สำหรับ Administrator!',
+                                                    icon: 'success',
+                                                  }),setTimeout(() => {
+                                                    window.location.href = 'index.php?page=rp_data';
+                                                  }, 3000);</script>";
                                             }
                                             }
                                             
@@ -175,14 +187,12 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                                 if($qr_repair){
                                                    
                                                     echo "<script>swal({
-                                                        title: 'ทำการดำเนินการ!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                                //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                        type: 'success', //success, warning, danger
-                                                        timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                        showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                    }, function(){
-                                                        window.location.href ='index.php?page=rp_data'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                        })</script>";
+                                                        title: 'ทำการดำเนินการ!',
+                                                        // text: 'สำหรับ Administrator!',
+                                                        icon: 'success',
+                                                      }),setTimeout(() => {
+                                                        window.location.href = 'index.php?page=rp_data';
+                                                      }, 3000);</script>";
                                                 }
                                             }
                                         }
@@ -251,15 +261,15 @@ $rs_rp = mysqli_fetch_assoc($qr_rp);
                                                     $qr_exp = mysqli_query($conn, $sql_exp);
 
                                                     if ($qr_exp) {
-                                                        echo "<script>swal({
-                                                            title: 'บันทึกค่าใช้จ่ายเรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                                    //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                            type: 'success', //success, warning, danger
-                                                            timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                            showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                        }, function(){
-                                                            window.location.href ='index.php?page=add_repair&louis=$id'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                            })</script>";
+                                                       
+
+                                                            echo "<script>swal({
+                                                                title: 'บันทึกค่าใช้จ่ายเรียบร้อย!',
+                                                                // text: 'สำหรับ Administrator!',
+                                                                icon: 'success',
+                                                              }),setTimeout(() => {
+                                                                window.location.href ='index.php?page=add_repair&louis=$id'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
+                                                              }, 3000);</script>";
                                                     }
                                                 }
                                                 ?>

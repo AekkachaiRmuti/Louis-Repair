@@ -63,7 +63,7 @@
                                          LEFT OUTER JOIN tbl_category ON tbl_category.cate_id = tbl_repair.rp_name_inventory 
                                          LEFT OUTER JOIN tbl_status ON tbl_status.sts_id = tbl_repair.rp_status 
                                         LEFT OUTER JOIN tbl_position ON tbl_position.pst_id = tbl_repair.rp_position 
-                                        LEFT OUTER JOIN tbl_vote ON tbl_vote.vote_id = tbl_repair.rp_vote ";
+                                        LEFT OUTER JOIN tbl_vote ON tbl_vote.vote_id = tbl_repair.rp_vote  WHERE tbl_status.sts_id ='4'";
                                                 $qr_vote = mysqli_query($conn, $sql_vote);
                                                 while ($rs_vote = mysqli_fetch_assoc($qr_vote)) {
                                                 ?>
@@ -152,7 +152,7 @@
                                         LEFT OUTER JOIN tbl_position ON tbl_position.pst_id = tbl_repair.rp_position 
                                         LEFT OUTER JOIN tbl_vote ON tbl_vote.vote_id = tbl_repair.rp_vote 
                                         
-                                         WHERE tbl_repair.rp_user_key ='{$_SESSION["user_id"]}' AND tbl_status.sts_id = '4';";
+                                         WHERE tbl_repair.rp_user_key ='{$_SESSION['user_id']}' AND tbl_status.sts_id = '4';";
                                                 $qr_vote = mysqli_query($conn, $sql_vote);
                                                 while ($rs_vote = mysqli_fetch_assoc($qr_vote)) {
                                                 ?>

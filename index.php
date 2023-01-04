@@ -86,18 +86,27 @@ if ($_SESSION['web'] != "REPAIR") {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+	
 </head>
 <style>
     * {
         font-family: 'Kanit', sans-serif;
       
     }
+    b{
+        
+        text-decoration: underline;
+    }
+   
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <!-- sweet alert https://sweetalert.js.org/guides/-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- sweet alert https://sweetalert.js.org/guides/ -->
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="sweetalert/unpkg.sweetalert.js"></script>
     <?php
     //กำหนดเวลาที่สามารถอยู่ในระบบ
     $sessionlifetime = 120; //กำหนดเป็นนาที
@@ -157,9 +166,9 @@ if ($_SESSION['web'] != "REPAIR") {
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="?page=home" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="?page=file" class="nav-link"><?=  $_SESSION['user_key']?></a>
-                </li>
+                </li> -->
             </ul>
 
             </ul>
@@ -350,6 +359,15 @@ if ($_SESSION['web'] != "REPAIR") {
                                     <a href="index.php?page=setting_vote" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ตั้งค่าแบบประเมิน</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="index.php?page=database" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ตั้งค่าฐานข้อมูล</p>
                                     </a>
                                 </li>
 

@@ -116,13 +116,13 @@ include './config/connect_db.php';
                                     <table class="table table-striped table-bordered detail-view" id="example">
                                         <thead>
                                             <tr>
-                                                <th>วันที่แจ้งซ่อม</th>
-                                                <th>ชื่อผู้แจ้ง</th>
-                                                <th>ประเภทงานซ่อม</th>
-                                                <th>ปัญหา/งานซ่อม</th>
-                                                <th>สาเหตุ/วิธีแก้ไข</th>
-                                                <th>ผู้ดำเนินการ</th>
-                                                <th>สถานะ</th>
+                                                <th style="text-align: center;">วันที่แจ้งซ่อม</th>
+                                                <th style="text-align: center;">ชื่อผู้แจ้ง</th>
+                                                <th style="text-align: center;">ประเภทงานซ่อม</th>
+                                                <th style="text-align: center;">ปัญหา/งานซ่อม</th>
+                                                <th style="text-align: center;">สาเหตุ/วิธีแก้ไข</th>
+                                                <th style="text-align: center;">ผู้ดำเนินการ</th>
+                                                <th style="text-align: center;">สถานะ</th>
 
                                             </tr>
                                         </thead>

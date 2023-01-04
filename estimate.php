@@ -96,15 +96,14 @@
                                                             $qr_up = mysqli_query($conn, $sql_up);
                                                         }
                                                     }
-                                                    echo "<script>swal({
-                                                        title: 'ทำแบบประเมินเรียบร้อย!', //ข้อความ เปลี่ยนได้ เช่น บันทึกข้อมูลสำเร็จ!!
-                                                //    text: 'Redirecting in 3 seconds.', //ข้อความเปลี่ยนได้ตามการใช้งาน
-                                                        type: 'success', //success, warning, danger
-                                                        timer: 2000, //ระยะเวลา redirect 3000 = 3 วิ เพิ่มลดได้
-                                                        showConfirmButton: false //ปิดการแสดงปุ่มคอนเฟิร์ม ถ้าแก้เป็น true จะแสดงปุ่ม ok ให้คลิกเหมือนเดิม
-                                                    }, function(){
-                                                        window.location.href ='index.php?page=data_repair'; //หน้าเพจที่เราต้องการให้ redirect ไป อาจใส่เป็นชื่อไฟล์ภายในโปรเจคเราก็ได้ครับ เช่น admin.php
-                                                        })</script>";
+                                                
+                                                        echo "<script>swal({
+                                                            title: 'ทำแบบประเมินเรียบร้อย!',
+                                                            // text: 'สำหรับ Administrator!',
+                                                            icon: 'success',
+                                                          }),setTimeout(() => {
+                                                            window.location.href = 'index.php?page=data_repair';
+                                                          }, 3000);</script>";
                                                 }
                                                 $i++;
                                             }

@@ -22,11 +22,11 @@
                 </div>
                 <b>Username</b>
                 <div class="input-block email">
-                    <input type="text" class="form-control" placeholder="User Name" name="username">
+                    <input type="text" class="form-control" placeholder="User Name" name="username" autocomplete="off">
                 </div>
                 <b>Password</b>
                 <div class="input-block password">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off">
                 </div>
                 <!-- <p>Don’t have an account? <a href="#" class="span">Sign Up</a> here.</p> -->
                 <button type="submit" class="btn-login1" name="btn_login">เข้าสู่ระบบ</button>
