@@ -39,6 +39,7 @@
                                                         <th>วันที่สำเร็จ</th>
                                                         <th>ค่าใช้จ่าย</th>
                                                         <th>สถานะ</th>
+                                                        <th>พิมพ์</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -51,23 +52,25 @@
                                                     $qr_rp = mysqli_query($conn, $sql_rp);
 
                                                     while ($rs_rp = mysqli_fetch_assoc($qr_rp)) {
+                                                        $r_id = $rs_rp['rp_id'];
                                                     ?>
                                                         <tr>
                                                             <td><small>No.<?= $rs_rp["rp_job"] ?></small><br> <?= $rs_rp["rp_date_repair"] ?></td>
                                                             <td><?= $rs_rp["rp_name"] ?><br><small><?= $rs_rp["pst_name"] ?></small></td>
-                                                            <td><?= $rs_rp["type_name"] ?></td>
+                                                            <td><a href="index.php?page=report_work_detail&id=<?=$r_id?>"><?= $rs_rp["type_name"] ?></a></td>
                                                             <td><?= $rs_rp["rp_problem"] ?></td>
                                                             <td><?= $rs_rp["rp_problem_success"] ?></td>
                                                             <td><?= $rs_rp["rp_user_accept"] ?><br><small><?= $rs_rp["rp_user_position"] ?></small></td>
                                                             <td><?= $rs_rp["rp_date_success"] ?></td>
                                                             <?php
-                                                            $r_id = $rs_rp['rp_id'];
+                                                           
                                                             $total = "SELECT sum(exp_maintenance+exp_part+exp_invt+exp_vat) as sum_baht FROM `tbl_expenses` WHERE exp_repair = '$r_id'";
                                                             $qr_total = mysqli_query($conn, $total);
                                                             $rs_total = mysqli_fetch_assoc($qr_total);
                                                             ?>
                                                             <td style="text-align: center;"><?= number_format($rs_total["sum_baht"], 2) ?></td>
                                                             <td><?= $rs_rp['sts_name'] ?></td>
+                                                            <td><a href="print_pdf.php?id=<?=$r_id?>" class="btn-outline-primary btn-sm" target="_blank">พิมพ์</a></td>
                                                         </tr>
                                                     <?php
                                                         $i++;
@@ -87,7 +90,7 @@
                                             $de = $_GET['d2'];
                                         }
                                         ?>
-                                        <h3>สถิติการปฎิบัติงาน : <?= $ds ?> ถึง <?= $de  ?></h3>
+                                        <!-- <h3>สถิติการปฎิบัติงาน : <?= $ds ?> ถึง <?= $de  ?></h3> -->
                                         <div class="col-md-3 col-sm-12 col-3">
 
                                             <div class="form-group">

@@ -135,8 +135,8 @@ include './config/connect_db.php';
                                                 <tr>
                                                     <td><b>Job ID :</b> <?= $rs_rp["rp_job"] ?><br> <?= $rs_rp["rp_date_repair"] ?></td>
                                                     <td><b>ชื่อผู้แจ้ง :</b> <?= $rs_rp["rp_name"] ?> <br> <i>ไอที(IT)</i><br> <b>ความเร่งด่วน :</b> <?= $rs_rp["ug_name"] ?></td>
-                                                    <td><b>ประเภทงานซ่อม :</b> <?= $rs_rp["type_name"] ?> <br> <b>ประเภทปัญหา :</b> <?= $rs_rp["rp_problem"] ?></td>
-                                                    <td><b>ชื่ออุปกรณ์ : </b><?= $rs_rp["cate_name"] ?> <br> <b>ปัญหา/งานซ่อม : </b><?= $rs_rp["rp_problem"] ?></td>
+                                                    <td><b>ประเภทงานซ่อม :</b> <?= $rs_rp["type_name"] ?> <br> <b>สถานที่ติดตั้ง :</b> <?= $rs_rp["rp_location_setup"] ?></td>
+                                                    <td><b>ชื่ออุปกรณ์ : </b><?= $rs_rp["rp_serial"] ?> <br> <b>ปัญหา/งานซ่อม : </b><?= $rs_rp["rp_problem"] ?></td>
                                                     <?php
                                                     if ($rs_rp["rp_cause"] !== '') {
 

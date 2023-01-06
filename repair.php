@@ -60,19 +60,19 @@ include './config/connect_db.php';
                                                 </select>
                                             </div>
                                         </div>
-
+<!-- 
                                         <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
                                                 <label for="problem" class="control-label mt-3">ประเภทปัญหา</label>
                                                 <input type="text" class="form-control" name="problem">
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="invt" class="control-label mt-3">ชื่ออุปกรณ์</label>
+                                                <label for="invt" class="control-label mt-3">ประเภทอุปกรณ์</label>
                                                 <select id="" class="form-control" name="invt_name">
-                                                    <option value="">-ชื่ออุปกรณ์-</option>
+                                                    <option value="">-ประเภทอุปกรณ์-</option>
                                                     <?php
                                                     $sql_inventory = "SELECT * FROM `tbl_category`";
                                                     $qr_inventory = mysqli_query($conn, $sql_inventory);
@@ -87,6 +87,14 @@ include './config/connect_db.php';
                                         </div>
 
                                         <div class="col-3 col-lg-4 col-md-6 col-sm-3">
+                                            <div class="form-gruop">
+                                                <label for="invt" class="control-label mt-3">ยี่ห้อ/รุ่น/Serial No:</label>
+                                                <input type="text" name="serial" class="form-control">
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
                                                 <label for="urgency" class="control-label mt-3">ความเร่งด่วน</label>
                                                 <select id="" class="form-control" name="urgency">
@@ -104,20 +112,27 @@ include './config/connect_db.php';
                                             </div>
                                         </div>
 
+                                        <div class="col-lg-4 col-md-6 col-sm-3">
+                                            <div class="form-gruop">
+                                                <label for="urgency" class="control-label mt-3">สถานที่ติดตั้ง</label>
+                                                <input type="text" name="location_setup" class="form-control">
+                                            </div>
+                                        </div>
+
                                         <div class="col-3 col-lg-4 col-md-6 col-sm-3">
                                             <div class="form-gruop">
                                                 <label for="problem_work" class="control-label mt-3">ปัญหา/งานซ่อม</label>
                                                 <textarea id="" class="form-control" name="problem_work"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
+                                        <div class="col-lg-3 col-md-6 col-sm-3">
                                             <div class="form-gruop">
                                                 <label for="pic" class="control-label mt-3">ไฟล์แนบ</label>
                                                 <input type="file" class="form-control" name="fileupload" id="fileupload" accept="image/gif, image/jpeg, image/png">
                                             </div>
                                         </div>
 
-                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3">
+                                        <div class="col-3 col-lg-4 col-md-6 col-sm-3 mt-4">
                                             <div class="form-gruop">
                                                 <br>
                                                 <button type="submit" class="btn btn-outline-primary btn-sm" id="btn_ok" name="btn_ok">แจ้งซ่อม</button>
@@ -132,7 +147,7 @@ include './config/connect_db.php';
                                                     <th>เลขที่แจ้ง</th>
                                                     <th>วันที่แจ้ง</th>
                                                     <th>ผู้แจ้ง</th>
-                                                    <th>ชื่ออุปกรณ์</th>
+                                                    <th>ยี่ห้อ/รุ่น/Serial No:</th>
                                                     <th>รายละเอียดปัญหา</th>
                                                     <th>สถานะ</th>
                                                 </tr>
@@ -146,9 +161,9 @@ include './config/connect_db.php';
                                                     ?>
                                                     <tr>
                                                         <td><?= $rs_dt['rp_job']?></td>
-                                                        <td><?= $rs_dt['rp_date_repair']?></td>
+                                                        <td><?= $rs_dt['rp_date_repair']  ."  ".$rs_dt['rp_time']?></td>
                                                         <td><?= $rs_dt['rp_name']?></td>
-                                                        <td><?= $rs_dt['cate_name']?></td>
+                                                        <td><?= $rs_dt['rp_serial']?></td>
                                                         <td><?= $rs_dt['rp_problem']?></td>
                                                         <td><?= $rs_dt['sts_name']?></td>
                                                     </tr>
@@ -215,7 +230,7 @@ include './config/connect_db.php';
                                             $newname = str_replace($remove_these, '', $_FILES['fileupload']['name']);
 
                                             //ตั้งชื่อไฟล์ใหม่โดยเอาเวลาไว้หน้าชื่อไฟล์เดิม
-                                            $jod_id = 'CMS' . date("Ymd") . rand(0, 999);
+                                           
                                             $newname = $jod_id . basename($newname);
                                             $path_copy = $path . $newname;
                                             $path_link = $path . $newname;
@@ -224,12 +239,12 @@ include './config/connect_db.php';
 
                                             move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);
                                         }
-                                        
+                                        $jod_id = 'CMS' . date("Ymd") . rand(0, 999);
                                             $path_link = $path . $newname;
-                                        
+                                        $datetime = date('H:m:s');
                                         // insert data into database LouisRepair
-                                        $sql_repair = "INSERT INTO tbl_repair (`rp_job`,`rp_date_repair`,`rp_name`,`rp_user_key`,`rp_position`,`rp_urgency`,`rp_type_repair`,`rp_name_inventory`,`rp_problem`,`rp_problem_success`,`rp_cause`,`rp_date_success`,`rp_date_next`,`rp_user_accept`,`rp_user_position`,`rp_status`,`rp_picture`,`rp_pic_success`,`rp_vote`)
-                                                                        VALUES('$jod_id','$date_create','{$_SESSION['user_name']}',{$_SESSION['user_id']},'{$_SESSION['user_position']}','$urgency','$type_work','$invt','$problem_work','','','','','','','1','$path_link','','')";
+                                        $sql_repair = "INSERT INTO tbl_repair (`rp_job`,`rp_date_repair`,`rp_time`,`rp_name`,`rp_user_key`,`rp_position`,`rp_urgency`,`rp_type_repair`,`rp_name_inventory`,`rp_location_setup`,`rp_serial`,`rp_problem`,`rp_problem_success`,`rp_cause`,`rp_date_success`,`rp_date_next`,`rp_user_accept`,`rp_user_position`,`rp_status`,`rp_picture`,`rp_pic_success`,`rp_vote`)
+                                                                        VALUES('$jod_id','$date_create','$datetime','{$_SESSION['user_name']}',{$_SESSION['user_id']},'{$_SESSION['user_position']}','$urgency','$type_work','$invt','{$_POST['location_setup']}','{$_POST['serial']}','$problem_work','','','','','','','1','$path_link','','')";
                                         $qr_repair = mysqli_query($conn, $sql_repair);
                                         if ($qr_repair) {                                      
                                                   echo "<script>swal({

@@ -5,8 +5,8 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>การแจ้งปัญหา (IT Support)</h1>
-                        <button class="btn btn-warning" onclick="window.location.href='index.php?page=it_problem&update=1'">UPDATE</button>
-                        <small>UPDATE DATA FROM DATABASE louis_db.it_problem to louis_repair</small>
+                        <!-- <button class="btn btn-warning" onclick="window.location.href='index.php?page=it_problem&update=1'">UPDATE</button>
+                        <small>UPDATE DATA FROM DATABASE louis_db.it_problem to louis_repair</small> -->
                     </div>
                     <?php
                     if(@$_GET['update'] == 1){

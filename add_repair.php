@@ -72,11 +72,12 @@ if($_SESSION['user_level'] == '1'){
                                     <br>
                                     <h3>ข้อมูลปัญหา</h3>
                                     <label for="">ประเภทงานซ่อม</label><input type="text" value="<?= $rs_rp['type_name'] ?>" class="form-control" disabled>
-                                    <label for="">ประเภทปัญหา</label><input type="text" value="<?= $rs_rp['rp_problem'] ?>" class="form-control" disabled>
-                                    <label for="">ชื่ออุปกรณ์</label><input type="text" value="<?= $rs_rp['cate_name'] ?>" class="form-control" disabled>
+                                    <label for="">ปัญหา/งานซ่อม</label><textarea type="text" value="" class="form-control" disabled><?= $rs_rp['rp_problem'] ?></textarea>
+                                    <label for="">ประเภทอุปกรณ์</label><input type="text" value="<?= $rs_rp['cate_name'] ?>" class="form-control" disabled>
+                                    <label for="">ยี่ห้อ/รุ่น/Serial No:</label><input type="text" value="<?= $rs_rp['rp_serial'] ?>" class="form-control" disabled>
+                                    
                                     <label for="">ความเร่งด่วน</label><input type="text" value="<?= $rs_rp['ug_name'] ?>" class="form-control" disabled>
-                                    <label for="">ปัญหา/งานซ่อม</label>
-                                    <input type="text" value="<?= $rs_rp['rp_problem'] ?>" class="form-control" disabled>
+                                   
                                     <label for="">ไฟล์แนบ</label><br>
                                    
                                     <div >
@@ -96,16 +97,17 @@ if($_SESSION['user_level'] == '1'){
                                         <label for="">วันที่ดำเนินการ</label><input type="date" class="form-control" value="<?= $rs_rp['rp_date_next'] ?>" name="date_next">
 
                                         <label for="">ผู้ดำเนินการ</label><select name="user_next" id="" class="form-control" disabled>
-                                            <option value=""><?= $_SESSION['user_user'] ?></option>
+                                            <option value=""><?= $_SESSION['user_name'] ?></option>
                                         </select>
                                         <br>
                                         <h3>ผลการแก้ไข</h3>
                                         <label for="">วันที่สำเร็จ</label><input type="date" class="form-control" name="date_succuss" value="<?= $rs_rp['rp_date_success'] ?>">
-                                        <label for="">สาเหตุ/วิธีแก้ไข</label><textarea name="method_edit" id="" class="form-control" ><?= $rs_rp['rp_cause'] ?></textarea>
-                                        <label for="">ชื่ออุปกรณ์</label><input type="text" value="<?= $rs_rp['cate_name'] ?>"" name="name_inventory" class="form-control" disabled>
-                                        <label for="">ความเร่งด่วน</label><input type="text" value="<?= $rs_rp['ug_name'] ?>"" name="fast" class="form-control" disabled>
-                                        <label for="">ปัญหา/งานซ่อม</label>
+                                        <label for="">สาเหตุ</label><textarea name="method_edit" id="" class="form-control" ><?= $rs_rp['rp_cause'] ?></textarea>
+                                        <label for="">การแก้ไข</label>
                                         <textarea name="problem_work" class="form-control" ><?= $rs_rp['rp_problem_success'] ?></textarea>
+                                        <label for="">ชื่ออุปกรณ์</label><input type="text" value="<?= $rs_rp['cate_name'] ."/". $rs_rp['rp_serial'] ?>"" name="name_inventory" class="form-control" disabled>
+                                        <label for="">ความเร่งด่วน</label><input type="text" value="<?= $rs_rp['ug_name'] ?>"" name="fast" class="form-control" disabled>
+                                        
                                         <label for="">ไฟล์แนบ</label><br>
                                         <input type="file" name="fileupload" id="fileupload" class="form-control" accept="image/gif, image/jpeg, image/png">
                                         <br>
@@ -215,7 +217,7 @@ if($_SESSION['user_level'] == '1'){
                                                             <thead>
                                                                 <tr>
                                                                     <th style="text-align: center;">ประเภทค่าใช้จ่าย</th>
-                                                                    <th style="text-align: center;">จำนวน</th>
+                                                                    <th style="text-align: center;">ราคา</th>
                                                                     <th style="text-align: center;">รายละเอียด</th>
                                                                 </tr>
                                                             </thead>
