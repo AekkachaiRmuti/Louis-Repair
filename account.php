@@ -121,20 +121,35 @@ include './config/connect_db.php';
                                         </div>
                                         <?php
                                         if (isset($_POST['save_ac'])) {
+                                            $password = $_POST['pw'];
+                                            $options = [
+                                                'cost' => 10,
+                                            ];
+
+                                            //รหัสผ่านมาจากตาราง
+                                            $store_password = $password;
+
+                                            //นำเข้ากระบวนการเข้ารหัสด้วย PASSWORD_BCRYPT
+                                            $passwordHash = password_hash($store_password,  PASSWORD_BCRYPT, $options);
                                             $sql_save_ac = "INSERT INTO tbl_user (`user_name`,`user_user`,`user_pw`,`user_key`,`user_level`,`user_brance`,`user_dept`,`user_position`)
-                                            VALUES ('{$_POST['fullname']}','{$_POST['username']}','{$_POST['pw']}','1','{$_POST['us_level']}','{$_POST['brance']}','{$_POST['dept']}','{$_POST['pst']}')";
+                                            VALUES ('{$_POST['fullname']}','{$_POST['username']}','$passwordHash','1','{$_POST['us_level']}','{$_POST['brance']}','{$_POST['dept']}','{$_POST['pst']}')";
                                             $qr_save = mysqli_query($conn, $sql_save_ac);
 
                                             if ($qr_save) {
-                                                echo "<script>swal({
-                                                    title: 'เพิ่มผู้ใช้งานสำเร็จ',
-                                                    // text: 'สำหรับ Administrator!',
-                                                    icon: 'success',
-                                                    time: 30000,
-                                                   
-                                                  }),setTimeout(() => {
-                                                    window.location.href = 'index.php?page=account';
-                                                  }, 3000);</script>";
+                                                $sql_fg = "INSERT INTO tbl_forget (forget_user, forget_key) VALUES ('{$_POST['username']}','$password')";
+                                                $qr_fg = mysqli_query($conn, $sql_fg);
+                                                if($qr_fg){
+                                                    echo "<script>swal({
+                                                        title: 'เพิ่มผู้ใช้งานสำเร็จ',
+                                                        // text: 'สำหรับ Administrator!',
+                                                        icon: 'success',
+                                                        time: 30000,
+                                                       
+                                                      }),setTimeout(() => {
+                                                        window.location.href = 'index.php?page=account';
+                                                      }, 3000);</script>";
+                                                }
+                                               
                                             }
                                         }
                                         ?>
@@ -146,7 +161,7 @@ include './config/connect_db.php';
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-สกุล</th>
                                                         <th>ชื่อผู้ใช้</th>
-                                                        <th>Password</th>
+                                                        <!-- <th>Password</th> -->
                                                         <th>สาขา</th>
                                                         <th>แผนก</th>
                                                         <th>ตำแหน่ง</th>
@@ -169,7 +184,7 @@ include './config/connect_db.php';
                                                             <td><?= $i ?></td>
                                                             <td><?= $rs_acc["user_name"] ?></td>
                                                             <td><?= $rs_acc["user_user"] ?></td>
-                                                            <td><input type="password" value="<?= $rs_acc["user_pw"] ?>" class="form-control" id="myInput<?= $i ?>">
+                                                            <!-- <td><input type="password" value="<?= $rs_acc["user_pw"] ?>" class="form-control" id="myInput<?= $i ?>">
                                                                 <input type="checkbox" onclick="myFunction<?= $i ?>()">Show
                                                                 Password
                                                             </td>
@@ -182,7 +197,7 @@ include './config/connect_db.php';
                                                                         x.type = "password";
                                                                     }
                                                                 }
-                                                            </script>
+                                                            </script> -->
 
                                                             <td><?= $rs_acc["brn_name"] ?></td>
                                                             <td><?= $rs_acc["dept_name"] ?></td>
@@ -198,8 +213,8 @@ include './config/connect_db.php';
                                                         $sql_del = "DELETE FROM tbl_user WHERE user_id = '{$_GET['del']}'";
                                                         $qr_del = mysqli_query($conn, $sql_del);
                                                         if ($qr_del) {
-                                                            
-                                                                echo "<script>swal({
+
+                                                            echo "<script>swal({
                                                                     title: 'ลบผู้ใช้งานเรียบร้อย',
                                                                     // text: 'สำหรับ Administrator!',
                                                                     icon: 'success',
@@ -208,7 +223,6 @@ include './config/connect_db.php';
                                                                   }),setTimeout(() => {
                                                                     window.location.href = 'index.php?page=account';
                                                                   }, 3000);</script>";
-                                                            
                                                         }
                                                     }
                                                     ?>
@@ -260,17 +274,17 @@ include './config/connect_db.php';
                                         ?>
                                     </select>
                                     <script>
-                                        function getnew(){
+                                        function getnew() {
                                             let id_brn = document.getElementById("new_branch").value;
                                             console.log(id_brn);
                                             $.ajax({
-                                                        url: 'ajax/ajax_data.php?brn_new=' + id_brn,
-                                                        type: 'get',
-                                                        success: function(result) {
-                                                            $('#dept_add').html(result);
-                                                            
-                                                        }
-                                                    });
+                                                url: 'ajax/ajax_data.php?brn_new=' + id_brn,
+                                                type: 'get',
+                                                success: function(result) {
+                                                    $('#dept_add').html(result);
+
+                                                }
+                                            });
                                         }
                                     </script>
                                 </div>
@@ -294,12 +308,12 @@ include './config/connect_db.php';
                                 </div>
                                 <?php
                                 if (isset($_POST['add_new'])) {
-                                   
+
                                     $dept_new = $_POST['deptnew'];
                                     $position_new = $_POST['new_position'];
                                     $sql_add_dept1 = "INSERT INTO tbl_position (pst_name, pst_department) VALUES ('$position_new','$dept_new')";
                                     $qr_add_dept1 = mysqli_query($conn, $sql_add_dept1);
-                                    if($qr_add_dept1){
+                                    if ($qr_add_dept1) {
                                         echo "<script>swal({
                                             title: 'Add Position Successfully!',
                                             // text: 'สำหรับ Administrator!',
@@ -316,7 +330,7 @@ include './config/connect_db.php';
                                     $dept_new = $_POST['new_dept'];
                                     $sql_add_dept = "INSERT INTO tbl_department (dept_name, dept_brance) VALUES ('$dept_new','$brn_new')";
                                     $qr_add_dept = mysqli_query($conn, $sql_add_dept);
-                                    if($qr_add_dept){
+                                    if ($qr_add_dept) {
                                         echo "<script>swal({
                                             title: 'Add Department Successfully!',
                                             // text: 'สำหรับ Administrator!',
