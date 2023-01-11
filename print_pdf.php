@@ -19,6 +19,7 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
     <title>ใบแจ้งซ่อม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
 </head>
 <style>
     .date {
@@ -26,9 +27,27 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
         right: -78%;
         bottom: 88%;
     }
-    b, td{
-        font-size: 18px;
+    *{
+        font-size: 20px;
     }
+    body {
+    font-family: sarabun;
+}
+.unl{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 </style>
 
 <body>
@@ -36,7 +55,7 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
     <div class="container">
         <div class="row col-12">
-            <table style="width: 100%;">
+            <table style="width: 100%;" >
                 <tr>
 
                     <td style="text-align: center; width:100px"><img src="./img/11.png" alt="" width="60px"></td>
@@ -46,7 +65,7 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
                             <p>ใบแจ้งซ่อม ระบบ IT</p>
                         </center>
                     </td>
-                    <td style="text-align: left; width:100px"><small>เอกสารหมายเลข : F-IT-01 rev1</small> <br> <small>เอกสารเลขที่ : <?= $rs_sql["rp_job"] ?></small></td>
+                    <td style="text-align: center;width:100px"><small>เอกสารหมายเลข : F-IT-01 rev1</small> <br> <small>เอกสารเลขที่ : <?= $rs_sql["rp_job"] ?></small></td>
                 </tr>
             </table>
             <hr>
@@ -85,8 +104,8 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
                     <b>ตำแหน่ง</b> <?= $rs_sql["rp_user_position"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <b>วันที่ดำเนินการ</b> <?= $rs_sql["rp_date_next"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br>
-                    <b>สาเหตุ:</b> <?= $rs_sql["rp_cause"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <b>การแก้ไข:</b><?= $rs_sql["rp_problem_success"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>สาเหตุ: </b> <?= $rs_sql["rp_cause"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>การแก้ไข: </b><?= $rs_sql["rp_problem_success"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br>
                     <b>วันที่ส่งงาน</b> <?= $rs_sql["rp_date_success"] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    
@@ -97,7 +116,7 @@ $rs_sql = mysqli_fetch_assoc($qr_sql);
             <div class="col-lg-12 mt-3" >
                 <b class="mt-5"><u>ค่าใช้จ่าย</u></b>
                 <div class="p-3">
-                <table>
+                <table class="unl">
                              
                               
                              <tr >

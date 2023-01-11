@@ -18,11 +18,13 @@ if (isset($_POST['btn_login'])) {
     LEFT OUTER JOIN tbl_department on tbl_department.dept_id = tbl_user.user_dept
     LEFT OUTER JOIN tbl_position on tbl_position.pst_id = tbl_user.user_position WHERE user_user ='$user'";
     $qr_ck = mysqli_query($conn, $sql_ck);
+    $rs = mysqli_fetch_array($qr_ck);
+    $store_password = $rs["user_pw"];
+    
     $louis = "REPAIR";
   
     if (mysqli_num_rows($qr_ck) == 1 and $louis = "REPAIR") {
-         $rs = mysqli_fetch_array($qr_ck);
-         $store_password = $rs["user_pw"];
+        
         //Verify  Password ตรวจสอบ password ระหว่าง $password และ $store_password
          $validPassword = password_verify($pass, $store_password);
         if ($validPassword) {
@@ -44,12 +46,16 @@ if (isset($_POST['btn_login'])) {
             $_SESSION['pst_id'] =  $rs["pst_id"];
             $_SESSION['pst_name'] =  $rs["pst_name"];
             $_SESSION['pst_department'] =  $rs["pst_department"];
+            $_SESSION['user_img'] =  $rs["user_img"];
+            $_SESSION['user_unique_id'] =  $rs["user_unique_id"];
             $_SESSION["settime"] = $logtime;
 
+            
+
+    echo "<script>window.location.href ='index.php?page=home'</script>";
 
 
 
-            echo "<script>window.location.href ='index.php?page=home'</script>";
         }else{
             //password ผิด
 		    	//เคลียร์ session 

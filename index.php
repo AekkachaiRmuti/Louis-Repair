@@ -7,7 +7,12 @@ include 'connect_db.php';
 
 session_start();
 
-
+if($_SESSION['user_unique_id']){
+  
+        $status = "Active now";
+        $sql3 ="UPDATE tbl_user SET user_chat_status = '$status' WHERE user_unique_id = '{$_SESSION['user_unique_id']}'";
+            $sql2 = mysqli_query($conn,$sql3);
+}
 
 
 
@@ -25,7 +30,9 @@ if ($_SESSION['web'] != "REPAIR") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Louis Adhesive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
@@ -43,7 +50,8 @@ if ($_SESSION['web'] != "REPAIR") {
     <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-
+    <link rel="stylesheet" href="css_chat.css">
+   
 
 
     <!-- overlayScrollbars -->
@@ -77,7 +85,7 @@ if ($_SESSION['web'] != "REPAIR") {
     <script src="https://kit.fontawesome.com/12591b126c.js" crossorigin="anonymous"></script>
 
     <!-- sweet alert js & css -->
-   
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css" integrity="sha384-Tv5i09RULyHKMwX0E8wJUqSOaXlyu3SQxORObAI08iUwIalMmN5L6AvlPX2LMoSE" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
@@ -85,20 +93,31 @@ if ($_SESSION['web'] != "REPAIR") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
 </head>
 <style>
     * {
         font-family: 'Kanit', sans-serif;
-      
+
     }
-    b{
-        
+
+    b {
+
         text-decoration: underline;
     }
-   
+
+    .pull-right {
+        text-align: center;
+
+    }
+    .image img{
+        height: 50px;
+  width: 50px;
+       
+       
+    }
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -165,7 +184,7 @@ if ($_SESSION['web'] != "REPAIR") {
                     <a href="?page=home" class="nav-link">Home</a>
                 </li>
                 <!-- <li class="nav-item d-none d-sm-inline-block">
-                    <a href="?page=file" class="nav-link"><?=  $_SESSION['user_key']?></a>
+                    <a href="?page=file" class="nav-link"><?= $_SESSION['user_key'] ?></a>
                 </li> -->
             </ul>
 
@@ -196,11 +215,11 @@ if ($_SESSION['web'] != "REPAIR") {
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation4">
             <!-- Brand Logo -->
             <a href="index.php?page=home" class="brand-link">
                 <img src="image_louis/11.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light"><b>Louis Repair</b></span>
+                <span class="brand-text font-weight-light"><b>Louis Adhesive</b></span>
                 <!-- <small><?= @$seclogin ?></small> -->
             </a>
 
@@ -209,7 +228,7 @@ if ($_SESSION['web'] != "REPAIR") {
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="img/programmer.png" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?= $_SESSION['user_img']?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="?page=myProfile" class="d-block"><?= @$_SESSION['user_name'] ?> </a>
@@ -245,7 +264,43 @@ if ($_SESSION['web'] != "REPAIR") {
                                 <i class="fa fa-home nav-icon"></i>
                                 <p>
 
-                                    หน้าแรก
+                                    Home
+
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="index.php?page=system_repair" class="nav-link">
+                                <i class="fa fa-cogs nav-icon"></i>
+                                <p>
+
+                                    Repair System
+
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="index.php?page=itconnect" class="nav-link">
+                                <i class="fa fa-user-md nav-icon"></i>
+                                <p>
+
+                                    Help Desk Services
+
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="index.php?page=users" class="nav-link">
+                                <i class="fa fa-comment-o nav-icon"></i>
+                                <p>
+
+                                   Chat
 
                                     <span class="badge badge-info right"></span>
                                 </p>
@@ -301,7 +356,7 @@ if ($_SESSION['web'] != "REPAIR") {
                             </a>
                         </li>
                         <hr>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
 
                             <a href="index.php?page=repair" class="nav-link">
                                 <i class="fa fa-bar-chart nav-icon" aria-hidden="true"></i>
@@ -312,7 +367,7 @@ if ($_SESSION['web'] != "REPAIR") {
                                     <span class="badge badge-info right"></span>
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
 
@@ -410,7 +465,7 @@ if ($_SESSION['web'] != "REPAIR") {
 
                         <hr>
                         <li class="nav-item">
-                            <a href="logout.php" class="nav-link">
+                            <a href="logout.php?logout_id=<?=$_SESSION['user_unique_id']?>" class="nav-link">
                                 <i class="fa fa-sign-out nav-icon"></i>
                                 <p> ออกจากระบบ</p>
                             </a>
@@ -445,12 +500,12 @@ if ($_SESSION['web'] != "REPAIR") {
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="">
+    <footer class="pull-right">
 
 
-        <div class="float-right d-none d-sm-inline-block">
+        <div class="float-bottom d-none d-sm-inline-block right">
             All rights reserved.
-            <strong>Copyright &copy; 2022 <a href="#">Louis IT</a>.</strong>
+            <strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Louis IT</a>.</strong>
             <b>Version</b> 2.1.0
         </div>
     </footer>

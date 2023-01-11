@@ -127,7 +127,7 @@ include './config/connect_db.php';
                                         </div>
                                         <div class="col-lg-3 col-md-6 col-sm-3">
                                             <div class="form-gruop">
-                                                <label for="pic" class="control-label mt-3">ไฟล์แนบ</label>
+                                                <label for="pic" class="control-label mt-3">รูปภาพ อุปกรณ์/อาการ</label>
                                                 <input type="file" class="form-control" name="fileupload" id="fileupload" accept="image/gif, image/jpeg, image/png">
                                             </div>
                                         </div>

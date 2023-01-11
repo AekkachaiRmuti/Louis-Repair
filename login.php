@@ -18,7 +18,7 @@
             <form action="check_login.php" method="post" class="form">
                 <div class="photo-info">
                     <img src="./img/11.png" alt="">
-                    <h3>Welcome Louis Repair</h3>
+                    <h3>Welcome Louis Adhesive Tapes</h3>
                 </div>
                 <b>Username</b>
                 <div class="input-block email">

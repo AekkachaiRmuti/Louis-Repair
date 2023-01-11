@@ -1,7 +1,17 @@
+<?php
+session_start();
+    include "./connect_db.php";
+   
+    if($_GET['logout_id']){
+        $status = "Offline now";
+        $sql = mysqli_query($conn, "UPDATE tbl_user SET user_chat_status = '{$status}' WHERE user_unique_id={$_GET['logout_id']}");
+        if($sql){
+            session_unset();
+            session_destroy();
+            header("location: login.php");
+        }
+    }else{
+        header("location: ../users.php");
+    }
 
-<?php   
-session_start(); //to ensure you are using same session
-session_destroy(); //destroy the session
-header("location:login.php"); //to redirect back to "index.php" after logging out
-exit();
 ?>

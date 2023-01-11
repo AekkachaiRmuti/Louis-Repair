@@ -32,7 +32,7 @@ include './config/connect_db.php';
 
                             </div>
                             <div class="card-body">
-                                <form method="POST">
+                                <form method="POST" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12 col-sm-12">
                                             <label for="" class="label-control">Full Name</label>
@@ -84,6 +84,10 @@ include './config/connect_db.php';
                                                 <option value="">-Select-</option>
 
                                             </select>
+                                            <label for="" class="label-control">ภาพโปรไฟล์</label>
+                                            <input class="form-control" type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+
+
                                             <label for="" class="label-control" style="display: none ;">Save</label><br>
                                             <button class="btn btn-primary mt-2" type="submit" name="save_ac">Save</button>
 
@@ -121,7 +125,70 @@ include './config/connect_db.php';
                                         </div>
                                         <?php
                                         if (isset($_POST['save_ac'])) {
+                                            $ran_id = rand(time(), 100000000);
+                                            $status = "Active now";
                                             $password = $_POST['pw'];
+
+                                            $upload = basename($_FILES['image']['name']);
+                                            $date_create = date("Y-m-d");
+                                            if ($upload <> '') {   //not select file
+                                                //โฟลเดอร์ที่จะ upload file เข้าไป 
+                                                $path = "Profile_img/";
+
+                                                //เอาชื่อไฟล์ที่มีอักขระแปลกๆออก
+                                                $remove_these = array(
+                                                    ' ', '`', '"', '\'', '\\', '/', '_', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a',
+                                                    'b',
+                                                    'c',
+                                                    'd',
+                                                    'h',
+                                                    'k',
+                                                    'l',
+                                                    'm',
+                                                    'o',
+                                                    'q',
+                                                    'r',
+                                                    's',
+                                                    't',
+                                                    'u',
+                                                    'v',
+                                                    'x',
+                                                    'y',
+                                                    'z', 'A',
+                                                    'B',
+                                                    'C',
+                                                    'D',
+                                                    'H',
+                                                    'K',
+                                                    'L',
+                                                    'M',
+                                                    'O',
+                                                    'Q',
+                                                    'R',
+                                                    'S',
+                                                    'T',
+                                                    'U',
+                                                    'V',
+                                                    'X',
+                                                    'Y',
+                                                    'Z',
+                                                );
+                                                $newname = str_replace($remove_these, '', $_FILES['image']['name']);
+
+                                                //ตั้งชื่อไฟล์ใหม่โดยเอาเวลาไว้หน้าชื่อไฟล์เดิม
+
+                                                $newname = 'myprofile' . $fname . rand(0, 999) . date('YmdHms') . basename($newname);
+                                                $path_copy = $path . $newname;
+                                                $path_link = $path . $newname;
+                                                basename($newname);
+                                                // move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);
+                                                move_uploaded_file($_FILES["image"]["tmp_name"],$path_copy);
+                                            }else{
+                                                $path_link = 'Profile_img/usericon.png';
+                                            }
+                                            //คัดลอกไฟล์ไปเก็บที่เว็บเซริ์ฟเวอร์
+
+                                           
                                             $options = [
                                                 'cost' => 10,
                                             ];
@@ -131,14 +198,15 @@ include './config/connect_db.php';
 
                                             //นำเข้ากระบวนการเข้ารหัสด้วย PASSWORD_BCRYPT
                                             $passwordHash = password_hash($store_password,  PASSWORD_BCRYPT, $options);
-                                            $sql_save_ac = "INSERT INTO tbl_user (`user_name`,`user_user`,`user_pw`,`user_key`,`user_level`,`user_brance`,`user_dept`,`user_position`)
-                                            VALUES ('{$_POST['fullname']}','{$_POST['username']}','$passwordHash','1','{$_POST['us_level']}','{$_POST['brance']}','{$_POST['dept']}','{$_POST['pst']}')";
+                                           
+                                            $sql_save_ac = "INSERT INTO tbl_user (`user_name`,`user_user`,`user_pw`,`user_key`,`user_level`,`user_brance`,`user_dept`,`user_position`,`user_unique_id`,`user_img`,`user_chat_status`)
+                                            VALUES ('{$_POST['fullname']}','{$_POST['username']}','$passwordHash','1','{$_POST['us_level']}','{$_POST['brance']}','{$_POST['dept']}','{$_POST['pst']}','$ran_id','$path_link','$status')";
                                             $qr_save = mysqli_query($conn, $sql_save_ac);
 
                                             if ($qr_save) {
                                                 $sql_fg = "INSERT INTO tbl_forget (forget_user, forget_key) VALUES ('{$_POST['username']}','$password')";
                                                 $qr_fg = mysqli_query($conn, $sql_fg);
-                                                if($qr_fg){
+                                                if ($qr_fg) {
                                                     echo "<script>swal({
                                                         title: 'เพิ่มผู้ใช้งานสำเร็จ',
                                                         // text: 'สำหรับ Administrator!',
@@ -149,7 +217,6 @@ include './config/connect_db.php';
                                                         window.location.href = 'index.php?page=account';
                                                       }, 3000);</script>";
                                                 }
-                                               
                                             }
                                         }
                                         ?>
