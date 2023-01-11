@@ -62,23 +62,23 @@
                                 <div class="wrapper">
                                     <section class="chat-area">
                                         <?php
-                                        if($_GET['user_id']){
+                                        if(@$_GET['user_id']){
                                             ?>
                                             <header>
                                            <?php
                                             $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
                                             $sql = mysqli_query($conn, "SELECT * FROM tbl_user WHERE user_unique_id = {$user_id}");
                                             if (mysqli_num_rows($sql) > 0) {
-                                                $row = mysqli_fetch_assoc($sql);
+                                               @ $row = mysqli_fetch_assoc($sql);
                                             } else {
                                                 header("location: users.php");
                                             }
                                             ?>
                                             <!-- <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a> -->
-                                            <img src="<?= $row['user_img'] ?>" alt="">
+                                            <img src="<?= @$row['user_img'] ?>" alt="">
                                             <div class="details">
-                                                <span><?php echo $row['user_name'] ?></span>
-                                                <p><?php echo $row['user_status']; ?></p> 
+                                                <span><?php echo @$row['user_name'] ?></span>
+                                                <p><?php echo @$row['user_status']; ?></p> 
                                             </div>
                                         </header>
                                         <?php

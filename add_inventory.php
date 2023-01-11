@@ -35,7 +35,7 @@
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                         <label for="">รูปภาพอุปกรณ์</label>
-                                        <input name="fileupload" type="file" id="fileupload"><br>
+                                        <input name="fileupload" type="file" id="fileupload" class="form-control"><br>
                                         <div class="col-sm-12 col-lg-6">
 
                                             <label for="">รหัสอุปกรณ์</label>

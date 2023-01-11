@@ -69,11 +69,11 @@
                                                     $servername = "localhost";
                                                     $username = 'root';
                                                     $password = '';
-                                                    $db_name = 'louis_db';
+                                                    $db_name = 'louis_repair';
 
                                                     $conn = mysqli_connect($servername, $username, $password, $db_name);
                                                     $i = 1;
-                                                    $sql_rp = "SELECT * FROM it_problem order by itp_id desc";
+                                                    $sql_rp = "SELECT * FROM tbl_it_problem order by itp_id desc";
                                                     $qr_rp = mysqli_query($conn, $sql_rp);
 
                                                     while ($rs_rp = mysqli_fetch_assoc($qr_rp)) {
@@ -136,7 +136,7 @@
                                         <?php
 
 
-                                        $sql_rp = "SELECT COUNT(itp_dept_id) as ccc , itp_dept FROM it_problem GROUP BY itp_dept;";
+                                        $sql_rp = "SELECT COUNT(itp_dept_id) as ccc , itp_dept FROM tbl_it_problem GROUP BY itp_dept;";
                                         $qr_rp = mysqli_query($conn, $sql_rp);
                                         $dataPoints = array();
                                         while ($rs_rp = mysqli_fetch_array($qr_rp)) {
